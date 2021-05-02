@@ -1,4 +1,6 @@
-.Product-Card {
+.LoginForm {
+  max-width: 800px;
+  padding-bottom: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,9 +15,4 @@
       -ms-flex-align: center;
           align-items: center;
 }
-
-.Product-Card .Product-Img {
-  max-width: 100%;
-  max-height: 100%;
-}
-/*# sourceMappingURL=ProductCard.css.map */
+/*# sourceMappingURL=LoginForm.css.map */

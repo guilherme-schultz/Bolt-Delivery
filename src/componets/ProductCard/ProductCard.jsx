@@ -1,5 +1,7 @@
 import React from "react"
-import { Paper, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+
+import ProductDetails from "./ProductDetails/ProductDetails"
 
 import "./ProductCard.css"
 
@@ -15,20 +17,12 @@ function ProductItem() {
                 spacing={3}
                 xs={12}
             >
-
-                <Grid item xs={7}>
-                    <img className="Product-Img" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>
+                <Grid item xs={12} md={5} >
+                    <img className="Product-Img" alt="" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>
                 </Grid>
 
                 <Grid item xs={5}>
-                    <Paper>
-                        <div className="Product-Desc">
-                            <span className="" >Alface Romana <br/></span>
-                            <span className="Product-Price-Before">R$ 150,00 <br/></span>
-                            <span className="Product-Price">R$ 100,00 <br/></span>
-                            <span className="Product-Saler" >Armandinho Supermercados</span>
-                        </div>
-                    </Paper>
+                    <ProductDetails />
                 </Grid>
 
             </Grid>

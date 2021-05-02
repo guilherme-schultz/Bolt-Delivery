@@ -1,5 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core';
+
+import MenuBar from "../../componets/MenuBar/MenuBar"
 
 import ProductCard from "../../componets/ProductCard/ProductCard"
 import "./ProductPage.css"
@@ -7,12 +8,14 @@ import "./ProductPage.css"
 
 function ProductPage() { 
     return (
-        <div >
-            <h1>BOLT DELIVERY</h1>
-            <div>
-                <ProductCard />
+        <>
+            <MenuBar />
+            <div >
+                <div>
+                    <ProductCard />
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

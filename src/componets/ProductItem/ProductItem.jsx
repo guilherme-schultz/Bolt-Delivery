@@ -22,7 +22,7 @@ function ProductItem() {
             onMouseLeave={handleMouseHolvering}
             >
             
-            <img className="Product-Img" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>
+            <img className="Product-Img" alt="" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>
             <div className="Product-Desc">
                 <span className="" >Alface Romana <br/></span>
                 <span className="Product-Price-Before">R$ 150,00 <br/></span>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EAEZ,UAAU,EAAE,IAAI;CAInB;;AAND,AAGI,eAHW,CAGX,YAAY,CAAC;EACT,SAAS,EAAE,IAAI;CAClB",
+    "sources": [
+        "ProductSeller.scss"
+    ],
+    "names": [],
+    "file": "ProductSeller.css"
+}

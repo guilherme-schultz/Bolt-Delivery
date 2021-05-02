@@ -1,0 +1,42 @@
+.ProductDetails {
+
+    .Product-Name {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .Product-Price-Before {
+        font-size: 16px;
+        text-decoration: line-through;
+    }
+
+    .Product-Price {
+        font-size: 36px;
+        font-weight: lighter;
+    }
+}
+
+.Product-Qtd {
+
+    display: flex;
+    align-items: center;
+
+    .qtd-text {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+}
+
+.Action-Button {
+    .buy {
+        width: 320px;
+        height: 45px;
+
+        margin-bottom: 20px;
+    }
+
+    .add-Card {
+        width: 320px;
+        height: 45px;
+    }
+}

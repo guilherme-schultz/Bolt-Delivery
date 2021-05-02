@@ -1,0 +1,40 @@
+.ProductDetails .Product-Name {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.ProductDetails .Product-Price-Before {
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.ProductDetails .Product-Price {
+  font-size: 36px;
+  font-weight: lighter;
+}
+
+.Product-Qtd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Product-Qtd .qtd-text {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.Action-Button .buy {
+  width: 320px;
+  height: 45px;
+  margin-bottom: 20px;
+}
+
+.Action-Button .add-Card {
+  width: 320px;
+  height: 45px;
+}
+/*# sourceMappingURL=ProductDetails.css.map */
