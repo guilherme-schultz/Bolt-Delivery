@@ -1,0 +1,43 @@
+.Product-Box {
+  background-color: rgba(240, 240, 240, 0.979);
+  width: 240px;
+  height: 420px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
+.Product-Box .Product-Img {
+  width: 240px;
+  height: 240px;
+}
+
+.Product-Box .Product-Desc {
+  margin-left: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.Product-Box .Product-Desc .Product-Price-Before {
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.Product-Box .Product-Desc .Product-Price {
+  margin-top: 2px;
+  font-size: 24px;
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.Product-Box .Product-Desc .Product-Saler {
+  font-size: 13px;
+}
+
+.Product-Box:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+/*# sourceMappingURL=ProductItem.css.map */

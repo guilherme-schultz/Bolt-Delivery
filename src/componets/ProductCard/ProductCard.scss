@@ -1,0 +1,13 @@
+.Product-Card {
+    max-width: 1200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    .Product-Img {
+        display: inline-flex;
+        align-self: flex-start;
+    }
+}
