@@ -1,3 +1,6 @@
+
+a:link { text-decoration: none; }
+
 .Product-Box {
     background-color: rgba(240, 240, 240, 0.979);
 
@@ -8,12 +11,15 @@
     margin-right: 5px;
     margin-bottom: 30px;
 
+    
+
     .Product-Img {
         width: 240px;
         height: 240px
     }
 
     .Product-Desc {
+
         margin-left: 5px;
         font-size: 14px;
         font-weight: 400;

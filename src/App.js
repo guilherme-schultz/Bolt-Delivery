@@ -1,13 +1,9 @@
 import React from "react"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-//import StartPage from "./pages/StartPage/StartPage"
-// import ProductPage from "./pages/ProductPage/ProductPage"
-
-import LoginPage from "./pages/LoginPage/LoginPage"
+import Routes from "./routes"
 
 function App() {
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -21,7 +17,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      < LoginPage />
+      <Routes />
     </ThemeProvider>
   );
 }

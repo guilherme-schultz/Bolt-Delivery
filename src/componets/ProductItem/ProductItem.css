@@ -1,3 +1,7 @@
+a:link {
+  text-decoration: none;
+}
+
 .Product-Box {
   background-color: rgba(240, 240, 240, 0.979);
   width: 240px;
