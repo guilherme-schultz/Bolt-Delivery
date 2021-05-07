@@ -1,9 +1,24 @@
 import React from 'react';
 import { Grid, Typography, TextField, Paper } from '@material-ui/core';
 
-import "./LoginForm.css"
+// import cep from "../../services/cep"
+import "./AdressForm.css"
 
-function LoginForm() {
+function AdressForm() {
+
+  // const handleCep = (event) => {
+  //   // viacep.com.br/ws/01001000/json/
+  //   console.log(event.target.value)
+  //   try {
+  //     cep.get("/{event.target.value}/json/").then((resp) => {
+  //       console.log(resp)
+  //       // setIsProductList(resp.data.rows)
+  //     });
+  //     } catch (error) {
+  //       console.log(error);
+  //   }
+  // }
+
   return (
       <Paper elevation={2} className="LoginForm">
         <Typography variant="h6" gutterBottom>
@@ -12,25 +27,13 @@ function LoginForm() {
 
         <Grid container spacing={3} xs={12}>
 
-          <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
             <TextField
               required
-              id="firstName"
-              name="firstName"
-              label="Nome"
+              id="address1"
+              name="address1"
+              label="Apelido do Endereço"
               fullWidth
-              autoComplete="given-name"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              label="sobrenome"
-              fullWidth
-              autoComplete="family-name"
             />
           </Grid>
 
@@ -41,39 +44,35 @@ function LoginForm() {
               name="address1"
               label="Endereço"
               fullWidth
-              autoComplete="shipping address-line1"
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={4}>
             <TextField
               id="address2"
               name="address2"
-              label="Rua"
+              label="Bairro"
               fullWidth
-              autoComplete="shipping address-line2"
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               required
               id="city"
               name="city"
               label="Complemento"
               fullWidth
-              autoComplete="shipping address-level2"
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               required
               id="city"
               name="city"
               label="Número"
               fullWidth
-              autoComplete="shipping address-level2"
             />
           </Grid>
 
@@ -84,7 +83,6 @@ function LoginForm() {
               name="city"
               label="Cidade"
               fullWidth
-              autoComplete="shipping address-level2"
             />
           </Grid>
 
@@ -99,7 +97,6 @@ function LoginForm() {
               name="zip"
               label="Cep"
               fullWidth
-              autoComplete="shipping postal-code"
             />
           </Grid>
           
@@ -110,7 +107,6 @@ function LoginForm() {
               name="country"
               label="País"
               fullWidth
-              autoComplete="shipping country"
             />
           </Grid>
 
@@ -120,4 +116,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm
+export default AdressForm

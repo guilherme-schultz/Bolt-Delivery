@@ -1,7 +1,7 @@
 import React from 'react';
 // import {Grid, Typography, TextField, FormControlLabel, Checkbox} from '@material-ui/core';
 
-import LoginForm from "../../componets/LoginForm/LoginForm"
+import LoginForm from "../../componets/AdressForm/AdressForm"
 
 import "./LoginPage.css"
 

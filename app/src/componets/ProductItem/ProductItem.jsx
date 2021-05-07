@@ -16,10 +16,6 @@ const ProductItem = ({info}) => {
         }
     }
 
-    // useEffect(() => {
-    //     console.log(info)
-    // })
-
     return (
         <a href={"/produto/" + 10}>
             <Paper 
@@ -33,7 +29,7 @@ const ProductItem = ({info}) => {
                 <div className="Product-Desc">
                     <span className="">{info.nome}<br/></span>
                     <span className="Product-Price-Before">R$ 150,00 <br/></span>
-                    <span className="Product-Price">{info.preco}<br/></span>
+                    <span className="Product-Price">10<br/></span>
                     <span className="Product-Saler" >Armandinho Supermercados</span>
                 </div>
             </Paper>
