@@ -8,21 +8,31 @@ import "./ProductGrid.css"
 
 function ProductGrid() {
 
+    const getMarketName = () => {
+        var url = window.location.href
+        var urlS = (url.split("/")).slice(-1)[0]
+        return urlS
+    }
+
     const [isProductList, setIsProductList] = useState([]);
+    const [isTrue, setIsTrue] = useState(true);
 
     useEffect(() => {
-		try {
-            console.log('Buscando...')
-			api.get("/produtos").then((resp) => {
-                console.log(resp)
-                setIsProductList(resp.data.rows)
-                console.log(isProductList)
-			});
-		} catch (error) {
-			console.log(error);
-		}
+        if (isTrue){
+            try {
+                console.log('Buscando...')
+                api.get(`/mercados/produtos/${getMarketName()}`).then((resp) => {
+                    console.log(resp)
+                    setIsProductList(resp.data.rows)
+                    console.log(isProductList)
+                });
+            } catch (error) {
+                console.log(error);
+            }
+            setIsTrue(false)
+        }
 
-	}, [isProductList]);
+	}, [isTrue, isProductList]);
     
 
     return (
