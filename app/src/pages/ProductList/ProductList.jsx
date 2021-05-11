@@ -13,21 +13,15 @@ function ProductList() {
         return urlS
     }
 
-    useEffect(() => {
-        console.log(getMarketName())
-    }, []);
-
-    const [isMarketList, setIsMarketList] = useState([]);
+    const [isProductList, setIsProductList] = useState([]);
     const [isTrue, setIsTrue] = useState(true);
 
     useEffect(() => {
         if (isTrue){
             try {
-                console.log('Buscando...')
                 api.get(`/mercados/produtos/${getMarketName()}`).then((resp) => {
-                    console.log(resp)
-                    setIsMarketList(resp.data.rows)
-                    console.log(isMarketList)
+                    setIsProductList(resp.data.rows)
+                    console.log(isProductList)
                 });
             } catch (error) {
                 console.log(error);
@@ -35,11 +29,18 @@ function ProductList() {
             setIsTrue(false)
         }
 
-	}, [isTrue, isMarketList]);
+	}, [isTrue, isProductList]);
+
+    useEffect(() => {
+        console.log(isProductList)
+	}, [isProductList]);
 
     return (
         <div>
-            <h1>NOME MERCADO</h1>
+
+            {isProductList[0] && 
+                <h1>{isProductList[0].nome_supermercado}</h1>
+            }
 
             <div className="Search">
                 <Grid
@@ -62,8 +63,8 @@ function ProductList() {
                 </Grid>
             </div>
             
-            <div className="Start-Page">
-                <ProductGrid />
+            <div >
+                <ProductGrid productData={isProductList}/>
             </div>
         </div>
     )

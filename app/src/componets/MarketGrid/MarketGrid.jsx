@@ -31,7 +31,7 @@ function MarketGrid() {
             <Grid
                 container
                 direction="row"
-                justify="space-around"
+                justify="center"
                 alignItems="center"
                 spacing={3}
                 xs={10}

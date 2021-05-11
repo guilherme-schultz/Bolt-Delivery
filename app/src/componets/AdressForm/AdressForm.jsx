@@ -1,23 +1,96 @@
-import React from 'react';
-import { Grid, Typography, TextField, Paper } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Typography, TextField, Paper, Button } from '@material-ui/core';
 
-// import cep from "../../services/cep"
 import "./AdressForm.css"
 
 function AdressForm() {
+	const [isAdressData, setIsAdressData] = useState({
+		apelido: "",
+		endereco: "",
+		bairro: "",
+		estado: "",
+		complemento: "",
+		numero: "",
+		cidade: "",
+		cep: "",
+		pais: "Brasil"
+	});
 
-  // const handleCep = (event) => {
-  //   // viacep.com.br/ws/01001000/json/
-  //   console.log(event.target.value)
-  //   try {
-  //     cep.get("/{event.target.value}/json/").then((resp) => {
-  //       console.log(resp)
-  //       // setIsProductList(resp.data.rows)
-  //     });
-  //     } catch (error) {
-  //       console.log(error);
-  //   }
-  // }
+
+	const handleAdressApelido = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				apelido: event.target.value
+			}
+		})
+	}
+
+	const handleAdressEndereco = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				endereco: event.target.value
+			}
+		})
+	}
+
+
+	const handleAdressBairro = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				bairro: event.target.value
+			}
+		})
+	}
+
+
+	const handleAdressComplemento = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				complemento: event.target.value
+			}
+		})
+	}
+
+	const handleAdressNumero = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				numero: event.target.value
+			}
+		})
+	}
+
+	const handleAdressCidade = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				cidade: event.target.value
+			}
+		})
+	}
+
+	const handleAdressCep = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				cidade: event.target.value
+			}
+		})
+	}
+
+	const handleAdressEstado = (event) => {
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				estado: event.target.value
+			}
+		})
+	}
+
 
   return (
       <Paper elevation={2} className="LoginForm">
@@ -30,29 +103,32 @@ function AdressForm() {
         <Grid item xs={12}>
             <TextField
               required
-              id="address1"
-              name="address1"
+              id="apelido"
+              name="apelido"
               label="Apelido do Endereço"
               fullWidth
+			  onChange={handleAdressApelido}
             />
           </Grid>
 
           <Grid item xs={12}>
             <TextField
               required
-              id="address1"
-              name="address1"
+              id="endereco"
+              name="endereco"
               label="Endereço"
               fullWidth
+			  onChange={handleAdressEndereco}
             />
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <TextField
-              id="address2"
-              name="address2"
+              id="bairro"
+              name="bairro"
               label="Bairro"
               fullWidth
+			  onChange={handleAdressBairro}
             />
           </Grid>
 
@@ -63,16 +139,18 @@ function AdressForm() {
               name="city"
               label="Complemento"
               fullWidth
+			  onChange={handleAdressComplemento}
             />
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <TextField
               required
-              id="city"
-              name="city"
+              id="numero"
+              name="numero"
               label="Número"
               fullWidth
+			  onChange={handleAdressNumero}
             />
           </Grid>
 
@@ -83,11 +161,18 @@ function AdressForm() {
               name="city"
               label="Cidade"
               fullWidth
+			  onChange={handleAdressCidade}
             />
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField id="state" name="state" label="Estado" fullWidth />
+            	<TextField 
+					id="state"
+					name="state"
+					label="Estado"
+					fullWidth
+					onChange={handleAdressEstado}
+				/>
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -97,6 +182,7 @@ function AdressForm() {
               name="zip"
               label="Cep"
               fullWidth
+			  onChange={handleAdressCep}
             />
           </Grid>
           
@@ -112,7 +198,17 @@ function AdressForm() {
 
         </Grid>
 
+			<a href="/cadastroEndereco">
+				<Button
+					className="buy"
+					color="secondary"
+					variant="contained">
+					Continuar
+				</Button>
+			</a>	
+
       </Paper>
+	  
   );
 }
 
