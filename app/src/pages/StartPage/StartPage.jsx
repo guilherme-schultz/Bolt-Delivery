@@ -40,6 +40,10 @@ function StartPage() { const classes = useStyles()
                     />
                 </Grid>
             </div>
+
+            <div className="">
+                <img src="/assets/Bolt-Delivery.png" alt="Bolt" />
+            </div>
             
             <div className="Start-Page">
                 <ProductGrid />
