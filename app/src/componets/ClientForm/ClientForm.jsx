@@ -51,6 +51,7 @@ function ClientForm() {
 			api.post(`/user`, isUserData).then((resp) => {
 				console.log(resp.status)
 				if (resp.status === 200 ) {
+					sessionStorage.setItem('userCPF', isUserData.cpf);
 					window.location = "/cadastroEndereco"
 				}
 

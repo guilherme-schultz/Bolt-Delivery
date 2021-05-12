@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography, TextField, Paper, Button } from '@material-ui/core';
 
+import api from "../../services/api";
 import "./AdressForm.css"
 
 function AdressForm() {
@@ -13,8 +14,41 @@ function AdressForm() {
 		numero: "",
 		cidade: "",
 		cep: "",
-		pais: "Brasil"
+		pais: "Brasil",
+		geocode: "-",
+		cpf: ""
 	});
+
+	const handleAdress = () => {
+
+		isAdressData.cpf = sessionStorage.getItem('userCPF');
+		console.log(isAdressData)
+
+		if (
+			isAdressData.apelido === "" 
+			|| isAdressData.estado === "" 
+			|| isAdressData.numero === "" 
+			|| isAdressData.cep === ""
+			|| isAdressData.cpf === ""
+			|| isAdressData.endereco === "" 
+			|| isAdressData.bairro === ""
+		) {
+			console.log("Campos invalidos")
+			return
+		}
+
+		try {
+			api.post(`/adress`, isAdressData).then((resp) => {
+				console.log(resp.status)
+				if (resp.status === 200 ) {
+					console.log("OK")
+				}
+
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 
 	const handleAdressApelido = (event) => {
@@ -77,7 +111,7 @@ function AdressForm() {
 		setIsAdressData(prevState => {
 				return {
 				...prevState,
-				cidade: event.target.value
+				cep: event.target.value
 			}
 		})
 	}
@@ -135,8 +169,8 @@ function AdressForm() {
           <Grid item xs={12} sm={4}>
             <TextField
               required
-              id="city"
-              name="city"
+              id="Complemento"
+              name="Complemento"
               label="Complemento"
               fullWidth
 			  onChange={handleAdressComplemento}
@@ -170,6 +204,7 @@ function AdressForm() {
 					id="state"
 					name="state"
 					label="Estado"
+					type="text"
 					fullWidth
 					onChange={handleAdressEstado}
 				/>
@@ -192,20 +227,23 @@ function AdressForm() {
               id="country"
               name="country"
               label="País"
+			  value="Brasil"
+			  disabled
               fullWidth
             />
           </Grid>
 
         </Grid>
 
-			<a href="/cadastroEndereco">
-				<Button
-					className="buy"
-					color="secondary"
-					variant="contained">
-					Continuar
-				</Button>
-			</a>	
+			<Button
+				className="buy"
+				color="secondary"
+				variant="contained"
+				onClick={handleAdress}
+				>
+				Continuar
+			</Button>
+
 
       </Paper>
 	  
