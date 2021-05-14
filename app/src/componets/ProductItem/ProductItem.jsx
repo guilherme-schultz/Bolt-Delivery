@@ -1,10 +1,10 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 
 import { Paper } from '@material-ui/core';
 
 import "./ProductItem.css"
 
-const ProductItem = ({info}) => {
+const ProductItem = ({ info }) => {
     const [isMouseHolvering, setIsMouseHolvering] = useState(1);
 
     const handleMouseHolvering = () => {
@@ -22,6 +22,7 @@ const ProductItem = ({info}) => {
                 elevation={isMouseHolvering}
                 onMouseEnter={handleMouseHolvering}
                 onMouseLeave={handleMouseHolvering}
+                key={info.cod_produto}
             >
                 
                 <img className="Product-Img" alt="" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>

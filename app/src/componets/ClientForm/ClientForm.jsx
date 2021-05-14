@@ -52,7 +52,12 @@ function ClientForm() {
 				if (resp.status === 200 ) {
 					sessionStorage.setItem('userCPF', isUserData.cpf);
 					sessionStorage.setItem('userType', isUserData.tipo);
-					window.location = "/cadastroEndereco"
+
+					if (isUserData.tipo === "Supermercado") {
+						sessionStorage.setItem('marketID', resp.data);
+					}
+					
+					window.location = "/cadastro/endereco"
 				}
 
 			});

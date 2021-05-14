@@ -5,7 +5,6 @@ module.exports = {
     async create(req, res, next) {
         
         const userData = req.body
-        console.log(userData)
 
         if (userData.tipo === "Cliente") {
             userData.tipo = 0
@@ -32,7 +31,7 @@ module.exports = {
 
         const supermercado = 
         `INSERT INTO supermercado (cod_supermercado, nome_supermercado, responsavel, foto) 
-        VALUES ('${encodeURIComponent(userData.nomeMercado)}', '${userData.nomeMercado}', '${userData.cpf}', '${userData.foto}');
+        VALUES ('${userData.nomeMercado.replace(/[^a-zA-Z]/g, "")}', '${userData.nomeMercado}', '${userData.cpf}', '${userData.foto}');
         `
 
         if (userData.tipo === 0) {
@@ -47,10 +46,16 @@ module.exports = {
             query = query + supermercado
         }
 
-        console.log(query)
-
 		try {
 			const results = await knex.raw(query);
+
+            if (userData.tipo === 2) {
+                res.setHeader("marketId", userData.nomeMercado.replace(/[^a-zA-Z]/g, ""))
+                console.log(userData.nomeMercado.replace(/[^a-zA-Z]/g, ""))
+                console.log(res)
+                return res.json(userData.nomeMercado.replace(/[^a-zA-Z]/g, ""));
+            }
+
 			return res.json(results);
 		} catch (error) {
 

@@ -6,6 +6,7 @@ import ProductCard from "../../componets/ProductCard/ProductCard"
 import "./ProductPage.css"
 
 const ProductPage = () => {
+
     const getProductID = () => {
         var url = window.location.href
         var urlS = (url.split("/")).slice(-1)[0]
@@ -13,24 +14,25 @@ const ProductPage = () => {
     }
 
     const [isProductData, setIsProductData] = useState([]);
-    const [isTrue, setIsTrue] = useState(true);
 
     useEffect(() => {
-        if (isTrue){
-            try {
-                console.log('Buscando...')
-                console.log(getProductID())
-                api.get(`/produtos/${getProductID()}`).then((resp) => {
-                    setIsProductData(resp.data.rows)
-                    console.log(isProductData)
-                });
-            } catch (error) {
-                console.log(error);
-            }
-            setIsTrue(false)
-        }
+        console.log()
+    }, []);
 
-	}, [isTrue, isProductData]);
+    useEffect(() => {
+        try {
+            console.log('Buscando...')
+            console.log(getProductID())
+            api.get(`/produtos/${getProductID()}`).then((resp) => {
+                setIsProductData(resp.data.rows)
+                console.log(isProductData)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        
+    // eslint-disable-next-line
+	}, []);
 
     return (
         <>

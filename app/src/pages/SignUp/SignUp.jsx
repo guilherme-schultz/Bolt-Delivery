@@ -5,7 +5,7 @@ import ClientForm from "../../componets/ClientForm/ClientForm"
 
 import "./SignUp.css"
 
-function SignUp() {
+const SignUp = () => {
 
 	return (
 		<div className="SignUp">

@@ -5,7 +5,7 @@ import api from "../../services/api";
 import ProductGrid from "../../componets/ProductGrid/ProductGrid"
 import "./ProductList.css"
 
-function ProductList() {
+const ProductList = () => {
 
     const getMarketName = () => {
         var url = window.location.href
@@ -14,34 +14,48 @@ function ProductList() {
     }
 
     const [isProductList, setIsProductList] = useState([]);
-    // const [isSearch, setIsSearch] = useState("");
-    const [isTrue, setIsTrue] = useState(true);
+    const [isProductListRequested, setIsProductListRequested] = useState([]);
+    const [isMarketName, setIsMarketName] = useState([]);
 
-    useEffect(() => {
-        if (isTrue){
-            try {
-                api.get(`/mercados/produtos/${getMarketName()}`).then((resp) => {
-                    setIsProductList(resp.data.rows)
-                    console.log(isProductList)
-                });
-            } catch (error) {
-                console.log(error);
-            }
-            setIsTrue(false)
+    const handleSearch = (event) => {
+
+        if (event.target.value === "") {
+            setIsProductList(isProductListRequested)
+            console.log(isProductList)
+
+        } else {
+            const productFilter = isProductListRequested.filter((product) => 
+                product.nome.toLowerCase().startsWith(event.target.value.toLowerCase())
+            )
+            setIsProductList(productFilter)
+            console.log(isProductList)
         }
-
-	}, [isTrue, isProductList]);
+    } 
 
     useEffect(() => {
-        console.log(isProductList)
-	}, [isProductList]);
+        try {
+            api.get(`/mercados/name/${getMarketName()}`).then((resp) => {
+                setIsMarketName(resp.data.rows)
+                console.log(resp.data.rows)
+            });
 
+            api.get(`/mercados/produtos/${getMarketName()}`).then((resp) => {
+                setIsProductList(resp.data.rows)
+                setIsProductListRequested(resp.data.rows)
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+     
+        // eslint-disable-next-line
+	}, []);
 
     return (
         <div>
 
-            {isProductList[0] && 
-                <h1>{isProductList[0].nome_supermercado}</h1>
+            { isMarketName.length > 0 && 
+                <h1>{isMarketName[0].nome_supermercado}</h1>
             }
 
             <div className="Search">
@@ -61,11 +75,12 @@ function ProductList() {
                         id="filled-basic"
                         label="Busque um produto"
                         variant="filled"
+                        onChange={handleSearch}
                     />
                 </Grid>
             </div>
             
-            <div >
+            <div>
                 <ProductGrid productData={isProductList}/>
             </div>
         </div>

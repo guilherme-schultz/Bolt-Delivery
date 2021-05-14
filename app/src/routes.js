@@ -10,6 +10,7 @@ import SignUpAdressMarket from "./pages/SignUpAdressMarket/SignUpAdressMarket"
 import MarketPage from "./pages/MarketPage/MarketPage"
 import ProductList from "./pages/ProductList/ProductList"
 
+import ProductNew from "./pages/ProductNew/ProductNew"
 
 const Routes = () => {
     return (
@@ -19,12 +20,11 @@ const Routes = () => {
             <Route component={LoginPage} path="/login" />
             <Route component={SignUp} path="/cadastro" exact/>
             <Route component={SignUpAdress} path="/cadastro/endereco" exact />
-            <Route component={SignUpAdress} path="/cadastro/endereco/mercado" exact />
+            <Route component={SignUpAdressMarket} path="/cadastro/endereco/mercado" exact />
             <Route component={MarketPage} path="/mercados" />
             <Route component={ProductList} path="/produtos" />
-            <Route component={SignUpAdressMarket} path="/cadastroEnderecoMercado" />
-    
 
+            <Route component={ProductNew} path="/novo/produto" />
         </BrowserRouter>
     )
 }

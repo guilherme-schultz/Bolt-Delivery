@@ -16,19 +16,29 @@ const AdressForm = ({title}) => {
 		cep: "",
 		pais: "Brasil",
 		geocode: "-",
-		cpf: ""
+		cpf: "",
+		marketID: ""
 	});
+
+	const userType = sessionStorage.getItem("userType")
+	const marketIDAdress = sessionStorage.getItem("marketID")
 
 	const getMarketName = () => {
         var url = window.location.href
         var urlS = (url.split("/")).slice(-1)[0]
+
+		setIsAdressData(prevState => {
+				return {
+				...prevState,
+				marketID: marketIDAdress
+			}
+		})
         return urlS
     }
 
 	const handleAdress = () => {
 
 		isAdressData.cpf = sessionStorage.getItem('userCPF');
-		console.log(isAdressData)
 
 		if (
 			isAdressData.apelido === "" 
@@ -43,24 +53,27 @@ const AdressForm = ({title}) => {
 			return
 		}
 
-		const userType = sessionStorage.getItem("userType")
-
 		try {
-			if (getMarketName() != "cadastroEnderecoMercado") {
+			if (getMarketName() === "cadastro/endereco") {
 				api.post(`/adress`, isAdressData).then((resp) => {
 					console.log(resp.status)
 					if (resp.status === 200 ) {
 						if (userType === "Supermercado") {
-							window.location = "/cadastroEnderecoMercado"
+							window.location = "/cadastro/endereco/mercado"
 						} else {
 							window.location = "/"
 						}
 					}
 				});
 			} else {
+
+
+				console.log(marketIDAdress)
+
 				api.post(`/adress/market`, isAdressData).then((resp) => {
 					console.log(resp.status)
 					if (resp.status === 200 ) {
+						console.log(resp)
 						window.location = "/"
 					}
 
@@ -148,12 +161,12 @@ const AdressForm = ({title}) => {
 
 
   return (
-      <Paper elevation={2} className="LoginForm">
+      <Paper elevation={2} className="AdressForm">
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
 
-        <Grid container spacing={3} xs={12}>
+        <Grid container spacing={3} className="">
 
         <Grid item xs={12}>
             <TextField

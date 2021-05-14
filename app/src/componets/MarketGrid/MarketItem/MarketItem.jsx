@@ -1,7 +1,7 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
+import { Link } from "react-router-dom";
 
 import { Paper } from '@material-ui/core';
-
 import "./MarketItem.css"
 
 const MarketItem = ({info}) => {
@@ -16,21 +16,21 @@ const MarketItem = ({info}) => {
     }
 
     return (
-        <a href={"/produtos/" + info.cod_supermercado}>
+        <Link to={`/produtos/${info.cod_supermercado}`} >
             <Paper 
                 className="Product-Box"
                 elevation={isMouseHolvering}
                 onMouseEnter={handleMouseHolvering}
                 onMouseLeave={handleMouseHolvering}
+                key={info.cod_supermercado}
             >
                 
-                <img className="Product-Img" alt="" src="https://organicosdafatima.com.br/wp-content/uploads/2020/06/alface-americana-organica-organicos-da-fatima-horta-urbana-rio-de-janeiro-rj.png"/>
+                <img className="Product-Img" alt="" src={info.foto}/>
                 <div className="Product-Desc">
                     <span className="">{info.nome_supermercado}<br/></span>
-
                 </div>
             </Paper>
-         </a>
+         </Link>
     )
 }
 

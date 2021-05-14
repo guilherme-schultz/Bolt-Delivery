@@ -34,9 +34,14 @@ module.exports = {
         const adressMarketData = req.body
         const uidAdress = uuidv4()
 
+        console.log(adressMarketData)
+
         var query = `
+        INSERT INTO endereco (Cod_Endereco, apelido, CEP, Rua, Bairro, Numero, Complemento, Estado, Cidade, Pais, geocode)
+        VALUES ('${uidAdress}' , '${adressMarketData.apelido}',  ${adressMarketData.cep}, '${adressMarketData.endereco}', '${adressMarketData.bairro}', '${adressMarketData.numero}', '${adressMarketData.complemento}', '${adressMarketData.estado}', '${adressMarketData.cidade}', '${adressMarketData.pais}', '${adressMarketData.geocode}');
+
         INSERT INTO endereco_supermercado (Cod_Endereco, Cod_Supermercado)
-        VALUES ('${uidAdress}', 'Armandinho');
+        VALUES ('${uidAdress}', '${adressMarketData.marketID}');
         `
 
 		try {

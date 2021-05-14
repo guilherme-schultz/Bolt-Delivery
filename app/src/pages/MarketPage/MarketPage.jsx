@@ -9,10 +9,17 @@ import "./MarketPage.css"
 const MarketPage = () => {
 
     const [isMarketList, setIsMarketList] = useState([]);
+    const [isMarketListRequested, setIsMarketListRequested] = useState([]);
 
     const handleSearch = (event) => {
-        if (isMarketList) {
-            isMarketList.filter((product) => product.nome_supermercado.startsWith(event.target.value) )
+
+        if (event.target.value === "") {
+            setIsMarketList(isMarketListRequested)
+        } else {
+            const marketsFilter = isMarketListRequested.filter((market) => 
+                market.nome_supermercado.startsWith(event.target.value)
+            )
+            setIsMarketList(marketsFilter)
         }
     } 
 
@@ -21,14 +28,15 @@ const MarketPage = () => {
             console.log('Buscando...')
 			api.get("/mercados").then((resp) => {
                 console.log(resp)
+                setIsMarketListRequested(resp.data.rows)
                 setIsMarketList(resp.data.rows)
-                console.log(isMarketList)
+                console.log(resp.data.rows);
 			});
 		} catch (error) {
 			console.log(error);
 		}
-
-	}, [isMarketList]);
+        // eslint-disable-next-line
+	}, []);
 
     return (
         <>
