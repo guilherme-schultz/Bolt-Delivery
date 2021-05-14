@@ -30,7 +30,6 @@ function ClientForm() {
 		nomeMercado: ""
 	});
 
-
 	const handleUserData = () => {
 
 		if (
@@ -97,7 +96,6 @@ function ClientForm() {
 		})
 	}
 
-
 	const handleUserSenha = (event) => {
 		setIsUserData(prevState => {
 				return {
@@ -144,7 +142,7 @@ function ClientForm() {
 	}
 
 	const [isType, setIsType] = useState("Cliente");
-	const [isHidden, setIsHidden] = useState(true);
+	// const [isHidden, setIsHidden] = useState(true);
 
 	const handleSelectType = (event) => {
 		setIsType(event.target.value)
@@ -156,11 +154,11 @@ function ClientForm() {
 		}
 	})
 		
-		if (event.target.value === "Entregador") {
-			setIsHidden(false)
-		} else {
-			setIsHidden(true)
-		}
+		// if (event.target.value === "Entregador") {
+		// 	setIsHidden(false)
+		// } else {
+		// 	setIsHidden(true)
+		// }
 	}
 	
 	// const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
@@ -275,7 +273,7 @@ function ClientForm() {
 					</Grid>
 
 					{
-						!isHidden &&
+						(isType === "Supermercado" || isType === "Entregador" ) &&
 						<Grid item xs={12}>
 							<TextField
 								required

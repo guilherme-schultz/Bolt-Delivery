@@ -14,6 +14,7 @@ function ProductList() {
     }
 
     const [isProductList, setIsProductList] = useState([]);
+    // const [isSearch, setIsSearch] = useState("");
     const [isTrue, setIsTrue] = useState(true);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ function ProductList() {
     useEffect(() => {
         console.log(isProductList)
 	}, [isProductList]);
+
 
     return (
         <div>

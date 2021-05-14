@@ -31,8 +31,8 @@ module.exports = {
         `
 
         const supermercado = 
-        `INSERT INTO supermercado (cod_supermercado, nome_supermercado, responsavel) 
-        VALUES ('${encodeURIComponent(userData.nomeMercado)}', '${userData.nomeMercado}', '${userData.cpf}');
+        `INSERT INTO supermercado (cod_supermercado, nome_supermercado, responsavel, foto) 
+        VALUES ('${encodeURIComponent(userData.nomeMercado)}', '${userData.nomeMercado}', '${userData.cpf}', '${userData.foto}');
         `
 
         if (userData.tipo === 0) {

@@ -12,6 +12,10 @@ CREATE TABLE Endereco (
 	geocode varchar(255) NOT NULL
 );
 
+--ALTER TABLE endereco
+--ADD Apelido varchar(255);
+
+
 CREATE TABLE Usuario (
 	CPF varchar(255) PRIMARY KEY NOT NULL UNIQUE,
 	Email varchar(255) NOT NULL,
