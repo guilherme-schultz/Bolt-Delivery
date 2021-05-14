@@ -4,7 +4,7 @@ import { Grid, Typography, TextField, Paper, Button } from '@material-ui/core';
 import api from "../../services/api";
 import "./AdressForm.css"
 
-function AdressForm() {
+const AdressForm = ({title}) => {
 	const [isAdressData, setIsAdressData] = useState({
 		apelido: "",
 		endereco: "",
@@ -18,6 +18,12 @@ function AdressForm() {
 		geocode: "-",
 		cpf: ""
 	});
+
+	const getMarketName = () => {
+        var url = window.location.href
+        var urlS = (url.split("/")).slice(-1)[0]
+        return urlS
+    }
 
 	const handleAdress = () => {
 
@@ -37,14 +43,29 @@ function AdressForm() {
 			return
 		}
 
-		try {
-			api.post(`/adress`, isAdressData).then((resp) => {
-				console.log(resp.status)
-				if (resp.status === 200 ) {
-					console.log("OK")
-				}
+		const userType = sessionStorage.getItem("userType")
 
-			});
+		try {
+			if (getMarketName() != "cadastroEnderecoMercado") {
+				api.post(`/adress`, isAdressData).then((resp) => {
+					console.log(resp.status)
+					if (resp.status === 200 ) {
+						if (userType === "Supermercado") {
+							window.location = "/cadastroEnderecoMercado"
+						} else {
+							window.location = "/"
+						}
+					}
+				});
+			} else {
+				api.post(`/adress/market`, isAdressData).then((resp) => {
+					console.log(resp.status)
+					if (resp.status === 200 ) {
+						window.location = "/"
+					}
+
+				});
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -129,7 +150,7 @@ function AdressForm() {
   return (
       <Paper elevation={2} className="LoginForm">
         <Typography variant="h6" gutterBottom>
-          Cadastro de Endereço
+          {title}
         </Typography>
 
         <Grid container spacing={3} xs={12}>
