@@ -6,8 +6,10 @@ import ProductPage from "./pages/ProductPage/ProductPage"
 import LoginPage from "./pages/LoginPage/LoginPage"
 import SignUp from "./pages/SignUp/SignUp"
 import SignUpAdress from "./pages/SignUpAdress/SignUpAdress"
+import SignUpAdressMarket from "./pages/SignUpAdressMarket/SignUpAdressMarket"
 import MarketPage from "./pages/MarketPage/MarketPage"
 import ProductList from "./pages/ProductList/ProductList"
+
 
 const Routes = () => {
     return (
@@ -20,7 +22,8 @@ const Routes = () => {
             <Route component={SignUpAdress} path="/cadastro/endereco/mercado" exact />
             <Route component={MarketPage} path="/mercados" />
             <Route component={ProductList} path="/produtos" />
-            
+            <Route component={SignUpAdressMarket} path="/cadastroEnderecoMercado" />
+    
 
         </BrowserRouter>
     )

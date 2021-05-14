@@ -51,6 +51,7 @@ function ClientForm() {
 				console.log(resp.status)
 				if (resp.status === 200 ) {
 					sessionStorage.setItem('userCPF', isUserData.cpf);
+					sessionStorage.setItem('userType', isUserData.tipo);
 					window.location = "/cadastroEndereco"
 				}
 

@@ -4,12 +4,12 @@ import AdressForm from "../../componets/AdressForm/AdressForm"
 
 import "./SignUpAdress.css"
 
-function SignUpAdress() {
+const SignUpAdress = ()  => {
 
 	return (
 		<div className="SignUpAdress">
 		
-			<AdressForm  />
+			<AdressForm title="Cadastro de Endereço" />
 
 		</div>
 	)

@@ -14,7 +14,7 @@ import "./StartPage.css"
 //     }
 // }))
 
-function StartPage() {
+const StartPage = () => {
 
     return (
         <div >
