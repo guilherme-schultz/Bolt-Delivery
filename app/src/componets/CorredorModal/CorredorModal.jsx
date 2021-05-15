@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography, TextField, Paper, Button, Modal, Radio, Checkbox, FormControlLabel } from '@material-ui/core';
+import { Grid, Typography, TextField, Paper, Button, Modal, Checkbox, FormControlLabel } from '@material-ui/core';
 
 import api from "../../services/api";
 import "./CorredorModal.css"
 
-const CorredorModal = ({ isOpen, setIsOpen }) => {
+const CorredorModal = ({ isOpen, setIsOpen, setCorredor }) => {
 	const [isCorredorList, setIsCorredorList] = useState([]);
-	const [isCorredorSelect, setIsCorredorSelect] = useState("");
+	const [newRequest, setNewRequest] = useState(true);
 	const [isNovoCorredor, setIsNovoCorredor] = useState("");
+
+	const [isCorredorSelected, setCorredorSelected] = useState({});
 
 	useEffect(() => {
         try {
@@ -21,10 +23,37 @@ const CorredorModal = ({ isOpen, setIsOpen }) => {
         }
      
         // eslint-disable-next-line
-	}, [isOpen]);
+	}, [isOpen, newRequest]);
 
-	const handleChange = (selected) => {
-		setIsCorredorSelect(selected)
+	useEffect(() => {
+
+		// eslint-disable-next-line array-callback-return
+		isCorredorList.map(corredor => {
+			setCorredorSelected((prevState) => {
+				return {
+					...prevState,
+					[corredor.cod_corredor]: false
+				}
+			})
+		})
+
+		console.log(isCorredorSelected)
+     
+        // eslint-disable-next-line
+	}, [isCorredorList]);
+
+
+	const handleChange = (event) => {
+
+		setCorredorSelected((prevState) => {
+			return {
+				...prevState,
+				[event.target.name]: isCorredorSelected[event.target.name] ? true : false
+			}
+		})
+
+		console.log(event.target.name)
+		setCorredor(event.target.name)
 	}
 
 	// const handleNewCorredor = () => {
@@ -83,6 +112,7 @@ const CorredorModal = ({ isOpen, setIsOpen }) => {
 				console.log(resp.status)
 				if (resp.status === 200 ) {
 					console.log("Corredor Criado")
+					setNewRequest((newRequest) ? false : true)
 				}
 			});
 		
@@ -99,7 +129,7 @@ const CorredorModal = ({ isOpen, setIsOpen }) => {
 			aria-labelledby="simple-modal-title"
 			aria-describedby="simple-modal-description"
 		>
-			<Paper elevation={2} className="AdressForm">
+			<Paper elevation={2} className="CorredorForm">
 				<Typography variant="h6" gutterBottom>
 				Coredores
 				</Typography>
@@ -130,26 +160,23 @@ const CorredorModal = ({ isOpen, setIsOpen }) => {
 					</Button>
 
 				</Grid>
-
-				{isCorredorList && 
-					isCorredorList.map((corredors) => (
-						<Paper 
-							className="Corredor-list"
-						>
-							 <FormControlLabel
-								control={
-								<Checkbox
-									checked={isCorredorSelect}
-									onChange={handleChange}
-									name="checkedB"
-									color="primary"
-								/>
-								}
-								label={corredors.nome_corredor}
-							/>
-						</Paper>
-				
-				))}
+				<Paper 
+					className="Corredor-list"
+				>
+					<Grid container spacing={3} className="Corredor-list-name">
+						{isCorredorList && 
+							isCorredorList.map((corredors) => (
+								<Grid item xs={12}> 
+									<FormControlLabel 
+										control={<Checkbox name={corredors.cod_corredor} />}
+										label={corredors.nome_corredor}
+										onChange={handleChange}
+										
+									/>
+								</Grid>
+						))}
+					</Grid>
+				</Paper>
 
 			</Paper>
 

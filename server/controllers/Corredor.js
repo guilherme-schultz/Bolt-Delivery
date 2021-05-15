@@ -4,7 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
     async index(req, res, next) {
-		console.log(req)
 		try {
 			const results = await knex.raw("SELECT * FROM corredor");
 			return res.json(results);

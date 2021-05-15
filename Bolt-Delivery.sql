@@ -28,8 +28,12 @@ CREATE TABLE Usuario (
 CREATE TABLE Supermercado (
 	Cod_supermercado varchar(255) PRIMARY KEY,
 	Nome_supermercado varchar(255) NOT NULL,
-	Responsavel varchar(255) REFERENCES Usuario(CPF)
+	Responsavel varchar(255) REFERENCES Usuario(CPF),
+	foto varchar(255)
 );
+
+--ALTER TABLE Supermercado
+--ADD foto varchar(255);
 
 CREATE TABLE Endereco_Usuario (
 	Cod_Endereco varchar(255) REFERENCES Endereco PRIMARY KEY,
@@ -37,8 +41,8 @@ CREATE TABLE Endereco_Usuario (
 );
 
 CREATE TABLE Endereco_Supermercado (
-	Cod_Endereco varchar(255) REFERENCES Endereco PRIMARY KEY,
-	Cod_Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado)
+	Cod_Endereco varchar(255) REFERENCES Endereco,
+	Cod_Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado) PRIMARY KEY
 );
 
 CREATE TABLE Cliente (
@@ -86,8 +90,12 @@ CREATE TABLE Produto (
 	Nome varchar(255),
 	Descricao varchar(255),
 	Foto varchar(255),
-	Unidade_De_Medida varchar(255)	
+	Unidade_De_Medida varchar(255),
+	Cod_Corredor varchar(255) REFERENCES Corredor(Cod_Corredor)
 );
+
+--ALTER TABLE Produto
+--ADD Cod_Corredor varchar(255) REFERENCES Corredor(Cod_Corredor)
 
 CREATE TABLE Promocao (
 	Cod_Promocao varchar(255) PRIMARY KEY UNIQUE,

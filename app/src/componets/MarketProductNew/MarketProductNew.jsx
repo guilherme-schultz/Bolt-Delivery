@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography, TextField, Paper, Button, TextareaAutosize } from '@material-ui/core';
 
-import CorredorModal from "../../componets/CorredorModal/CorredorModal"
-
 import api from "../../services/api";
-import "./ProductNewForm.css"
+import "./MarketProductNew.css"
 
-const ProductNewForm = () => {
+const MarketProductNew = () => {
 	const [isProductData, setIsProductData] = useState({
 		name: "",
 		desc: "",
@@ -32,8 +30,6 @@ const ProductNewForm = () => {
 
         // eslint-disable-next-line
 	}, [setIsOpen]);
-
-
 
 	const handleNewProduct = () => {
 
@@ -98,7 +94,7 @@ const ProductNewForm = () => {
 
   return (
       <Paper elevation={2} className="AdressForm">
-        <Typography variant="h6" gutterBottom>
+        {/* <Typography variant="h6" gutterBottom>
           Cadastro de Produto
         </Typography>
 
@@ -168,14 +164,11 @@ const ProductNewForm = () => {
 				onClick={handleModal}
 				>
 				Corredores
-			</Button>
-
-            <CorredorModal isOpen={isOpen} setIsOpen={setIsOpen} setCorredor={setIsCorredor}/>
-
+			</Button> */}
 
       </Paper>
 	  
   );
 }
 
-export default ProductNewForm
+export default MarketProductNew

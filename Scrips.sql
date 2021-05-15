@@ -43,7 +43,7 @@ VALUES ('20', True, 'maminhaToip','Promocao de Maminhas');
 
 
 
------ ENDEREÇO 
+----- ENDEREï¿½O 
 INSERT INTO endereco (Cod_Endereco, CEP, Rua, Bairro,Numero,Complemento,Estado,Cidade,Pais,geocode)
 VALUES ('oitudobem' ,36570000, 'Rua top', 'Bairro top', '1321', '', 'MG', 'viciosa', 'viciosa', 'lat: 121212, log: 1212');
 
@@ -87,6 +87,13 @@ INSERT INTO pedido (Cod_Pedido,
 VALUES ('654fd65as4f654as64', '1', '100', '200000', '20', '520', 'Entrega', '2021-04-24 18:00:00', '2021-04-24 18:09:58',
 '1235548950', '1235548950', 'oitudobem', 'Armandinho', 2, 'Taxa Padrao', 'asdasdasdsadasdasd' );
 
+
+
+
+
+select *
+from supermercado s 
+where s.cod_supermercado = 'Super%2520Mercad%25C3%25A3o'
 
 
 

@@ -18,6 +18,7 @@ routes.post("/adress/market", Adress.createMarket);
 
 routes.get("/produtos", Produtos.index);
 routes.get("/produtos/:id", Produtos.byId);
+routes.post("/produtos/create", Produtos.create);
 
 routes.get("/mercados", Markets.index);
 routes.get("/mercados/name/:nameById", Markets.nameById);
