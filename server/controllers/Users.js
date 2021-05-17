@@ -27,6 +27,9 @@ module.exports = {
         const entregador = 
         `INSERT INTO entregador (cpf_entregador, foto) 
         VALUES ('${userData.cpf}', '${userData.foto}');
+
+        INSERT INTO entregador_carteira (CPF_entregador, Total_Frete, Total_Gorjeta, Taxa_Recebida)
+        VALUES ('${userData.cpf}', 0, 0, 0);
         `
 
         const supermercado = 
@@ -64,21 +67,33 @@ module.exports = {
                 message: 'Erro ao criar usuarios'
             });
 		}
-	}
+	},
 
-	// async byId(req, res, next) {
-	// 	const { id } = req.params
-	// 	console.log(id)
-	// 	const query = `
-	// 	select * 
-	// 	from produto_supermercado ps, supermercado s, produto p
-	// 	where s.cod_supermercado = ps.supermercado and ps.produto = p.cod_produto and ps.supermercado = s.cod_supermercado and p.cod_produto = '${id}'
-	// 	`
-	// 	try {
-	// 		const results = await knex.raw(query);
-	// 		return res.json(results);
-	// 	} catch (error) {
-	// 		next(error);
-	// 	}
-	// }
+	async index(req, res, next) {
+		
+		try {
+			const results = await knex.raw("select * from usuario");
+			return res.json(results);
+		} catch (error) {
+			next(error);
+		}
+	},
+
+    async byEmail(req, res, next) {
+		const { email } = req.params
+
+		const query = `
+		select * 
+		from usuario u
+		where u.email = '${email}'
+		`
+
+		try {
+			const results = await knex.raw(query);
+			return res.json(results);
+
+		} catch (error) {
+			next(error);
+		}
+	}
 }

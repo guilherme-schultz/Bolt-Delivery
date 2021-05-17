@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {TextField, Grid} from '@material-ui/core';
+import {TextField, Grid, Select, MenuItem, Button} from '@material-ui/core';
 
 import api from "../../services/api";
 import ProductGrid from "../../componets/ProductGrid/ProductGrid"
@@ -14,23 +14,38 @@ const ProductList = () => {
     }
 
     const [isProductList, setIsProductList] = useState([]);
+    const [isCorredores, setCorredores] = useState([]);
+	const [isSearchText, setSearchText] = useState("");
+	const [isCorredoresSelected, setCorredoresSelected] = useState("");
     const [isProductListRequested, setIsProductListRequested] = useState([]);
     const [isMarketName, setIsMarketName] = useState([]);
 
-    const handleSearch = (event) => {
+    const handleSearch = (event, type = true) => {
 
-        if (event.target.value === "") {
+		var value = ""
+		if (type) {
+			value = event.target.value
+		} else {
+			value = event
+		}
+
+        if (value === "" && isCorredoresSelected === "") {
             setIsProductList(isProductListRequested)
-            console.log(isProductList)
-
         } else {
-            const productFilter = isProductListRequested.filter((product) => 
-                product.nome.toLowerCase().startsWith(event.target.value.toLowerCase())
+            var productFilter = isProductListRequested.filter((product) => 
+                product.nome.toLowerCase().startsWith(value.toLowerCase())
             )
+
+			if (isCorredoresSelected !== "") {
+				productFilter = productFilter.filter((product) => 
+					product.cod_corredor === isCorredoresSelected
+				)
+			}
+			setSearchText(value)
             setIsProductList(productFilter)
-            console.log(isProductList)
         }
-    } 
+    }
+
 
     useEffect(() => {
         try {
@@ -44,12 +59,41 @@ const ProductList = () => {
                 setIsProductListRequested(resp.data.rows)
             });
 
+            api.get(`/corredor`).then((resp) => {
+                setCorredores(resp.data.rows)
+            });
+
         } catch (error) {
             console.log(error);
         }
      
         // eslint-disable-next-line
 	}, []);
+
+    useEffect(() => {
+        console.log(isCorredoresSelected)
+    }, [isCorredoresSelected]);
+
+
+	const handleChange = (event) => {
+		setCorredoresSelected(event.target.value)
+
+		if (isCorredoresSelected !== "") {
+			const productFilter = isProductListRequested.filter((product) => 
+				product.cod_corredor === event.target.value
+			)
+
+			setIsProductList(productFilter)
+		}
+	}
+
+	const handleLimpar = () => {
+		setCorredoresSelected("")
+		// if (isSearchText !== "") {
+			handleSearch( isSearchText, false)
+		// }
+		
+	}
 
     return (
         <div>
@@ -77,7 +121,31 @@ const ProductList = () => {
                         variant="filled"
                         onChange={handleSearch}
                     />
+
+					<Select
+						labelId="demo-customized-select-label"
+						id="demo-customized-select"
+						value={isCorredoresSelected}
+						onChange={handleChange}
+					>
+
+						{isCorredores && isCorredores.map((row) => (
+							<MenuItem value={row.cod_corredor}>{row.nome_corredor}</MenuItem>
+						))} 
+
+					</Select>
+
+					<Button
+						className="buy"
+						color="secondary"
+						variant="contained"
+						onClick={handleLimpar}
+						>
+						Limpar Filtro
+					</Button>
                 </Grid>
+
+               
             </div>
             
             <div>

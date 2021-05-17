@@ -7,9 +7,14 @@ const Produtos = require("./controllers/Products");
 const Markets = require("./controllers/Markets");
 const Corredor = require("./controllers/Corredor");
 const Promo = require("./controllers/Promo");
+const Payment = require("./controllers/Payment");
 
 
 routes.post("/user", User.create);
+routes.get("/user/:email", User.byEmail);
+routes.get("/users", User.index);
+
+routes.post("/pay", Payment.new);
 
 routes.post("/promo/new", Promo.new);
 
@@ -18,6 +23,7 @@ routes.post("/corredor/:nome", Corredor.create);
 
 routes.post("/adress", Adress.create);
 routes.post("/adress/market", Adress.createMarket);
+routes.get("/adress/:userId", Adress.byUser);
 
 routes.get("/produtos", Produtos.index);
 routes.get("/produtos/:id", Produtos.byId);

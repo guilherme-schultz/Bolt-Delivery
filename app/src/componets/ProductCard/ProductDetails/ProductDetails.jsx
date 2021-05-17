@@ -42,7 +42,16 @@ const ProductDetails = ({data}) => {
 
     const handleAddCart = () => {
         var productList = []
-        productList.push(isCartData[data.cod_supermercado])
+
+		console.log(isCartData[data.cod_supermercado])
+
+
+        if (isCartData[data.cod_supermercado] !== undefined) {
+            productList = isCartData[data.cod_supermercado]
+        }
+
+        console.log(productList)
+
         productList.push({
             productId: data.cod_produto,
             qtd: isItensQtd,
@@ -55,11 +64,10 @@ const ProductDetails = ({data}) => {
 
         console.log(productList)
         
-
         setCartData((prevState) => {
 			return {
 				...prevState,
-				[data.cod_supermercado]: [data.cod_supermercado].
+				[data.cod_supermercado]: productList
 			}
 		})
     }

@@ -36,7 +36,6 @@ const ProductNewForm = () => {
 
 
 	const handleNewProduct = () => {
-
 		if (
 			isProductData.name === "" 
 			|| isProductData.desc === "" 
@@ -52,6 +51,7 @@ const ProductNewForm = () => {
                 console.log(resp.status)
                 if (resp.status === 200 ) {
                     console.log(resp.status)
+					alert("Criado com sucesso");
                 }
             });
 		

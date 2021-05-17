@@ -54,7 +54,8 @@ const AdressForm = ({title}) => {
 		}
 
 		try {
-			if (getMarketName() === "cadastro/endereco") {
+			console.log(getMarketName())
+			if (getMarketName() === "endereco") {
 				api.post(`/adress`, isAdressData).then((resp) => {
 					console.log(resp.status)
 					if (resp.status === 200 ) {
@@ -66,8 +67,6 @@ const AdressForm = ({title}) => {
 					}
 				});
 			} else {
-
-
 				console.log(marketIDAdress)
 
 				api.post(`/adress/market`, isAdressData).then((resp) => {

@@ -56,4 +56,22 @@ module.exports = {
 		}
 	},
 
+    async byUser(req, res, next) {
+		const { userId } = req.params
+
+		const query = `
+		select * 
+		from endereco_usuario eu, endereco e
+		where eu.cpf_usuario = '${userId}' and eu.cod_endereco = e.cod_endereco;
+		`
+
+		try {
+			const results = await knex.raw(query);
+			return res.json(results);
+
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 }

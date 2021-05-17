@@ -16,6 +16,7 @@ const CorredorModal = ({ isOpen, setIsOpen, setCorredor }) => {
             api.get(`/corredor`).then((resp) => {
                 setIsCorredorList(resp.data.rows)
                 console.log(resp.data.rows)
+				
             });
 
         } catch (error) {
@@ -112,6 +113,7 @@ const CorredorModal = ({ isOpen, setIsOpen, setCorredor }) => {
 				console.log(resp.status)
 				if (resp.status === 200 ) {
 					console.log("Corredor Criado")
+					alert("Criado com sucesso");
 					setNewRequest((newRequest) ? false : true)
 				}
 			});

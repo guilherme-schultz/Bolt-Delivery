@@ -97,8 +97,6 @@ const ProductMarket = () => {
 
 
 
-
-
 	const [isOpenPromo, setIsOpenPromo] = useState(false);
 	const [isProductPromo, setProductPromo] = useState("");
 

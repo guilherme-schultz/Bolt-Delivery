@@ -16,13 +16,16 @@ import ProductNew from "./pages/ProductNew/ProductNew"
 
 import AdminPage from "./pages/AdminPage/AdminPage"
 import CartPage from "./pages/CartPage/CartPage"
+import PaymentPage from "./pages/PaymentPage/PaymentPage"
+
+import Login from "./pages/Login/Login"
 
 const Routes = () => {
     return (
         <BrowserRouter>
             <Route component={StartPage} path="/" exact />
             <Route component={ProductPage} path="/produto" />
-            <Route component={LoginPage} path="/login" />
+            <Route component={Login} path="/login" />
             <Route component={SignUp} path="/cadastro" exact/>
             <Route component={SignUpAdress} path="/cadastro/endereco" exact />
             <Route component={SignUpAdressMarket} path="/cadastro/endereco/mercado" exact />
@@ -33,6 +36,7 @@ const Routes = () => {
             <Route component={AdminPage} path="/admin" />
 
             <Route component={CartPage} path="/carrinho" />
+            <Route component={PaymentPage} path="/pagamento" />
         </BrowserRouter>
     )
 }

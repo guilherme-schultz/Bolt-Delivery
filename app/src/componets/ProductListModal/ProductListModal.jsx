@@ -9,7 +9,6 @@ const ProductListModal = ({ isOpen, setIsOpen, setCorredor, market, type }) => {
 	const [isProductSelected, setProductSelected] = useState({});
 
 	useEffect(() => {
-        console.log(type)
         try {
             if (type === "promo") {
                 api.get(`/mercados/produtos/${market}`).then((resp) => {
@@ -44,6 +43,7 @@ const ProductListModal = ({ isOpen, setIsOpen, setCorredor, market, type }) => {
 
 
 	const handleChange = (event) => {
+		console.log(event.target.name)
 		setProductSelected((prevState) => {
 			return {
 				...prevState,
