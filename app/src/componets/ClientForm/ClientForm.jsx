@@ -1,16 +1,7 @@
 import 'date-fns';
 import React, { useState } from 'react';
 import { Grid, Typography, TextField, Paper, FormControlLabel, RadioGroup, Radio, Button  } from '@material-ui/core';
-// import {
-//     MuiPickersUtilsProvider,
-//     KeyboardTimePicker,
-//     KeyboardDatePicker,
-//   } from '@material-ui/pickers';
 
-// import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-// import CheckBoxIcon from '@material-ui/icons/CheckBox';
-
-// import DateFnsUtils from '@date-io/date-fns';
 
 import api from "../../services/api";
 
@@ -166,12 +157,7 @@ function ClientForm() {
 		// 	setIsHidden(true)
 		// }
 	}
-	
-	// const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
-	
-	// const handleDateChange = (date) => {
-	//     setSelectedDate(date);
-	// };
+
 	
 	return (
 		<>

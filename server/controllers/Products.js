@@ -14,7 +14,7 @@ module.exports = {
 
 	async create(req, res, next) {
 		const { id } = req.params
-		// .replace(/[^a-zA-Z]/g, "")
+	
 		const query = `
 		select * 
 		from produto_supermercado ps, supermercado s, produto p
@@ -31,7 +31,7 @@ module.exports = {
 	async byId(req, res, next) {
 		const { id } = req.params
 
-		
+
 		const query = `
 		select * 
 		from produto_supermercado ps, supermercado s, produto p
@@ -45,6 +45,22 @@ module.exports = {
 		}
 	},
 
+	async byMarketId(req, res, next) {
+		const { market, id } = req.params
+
+		const query = `
+		select * 
+		from produto_supermercado ps, supermercado s, produto p
+		where s.cod_supermercado = ps.supermercado and ps.produto = p.cod_produto and ps.supermercado = s.cod_supermercado and s.cod_supermercado = '${market}' and p.cod_produto = '${id}'
+		`
+		try {
+			const results = await knex.raw(query);
+			return res.json(results);
+		} catch (error) {
+			next(error);
+		}
+	},
+	
 	async create(req, res, next) {
 		const productData = req.body
 		const uidCorredor = uuidv4()
@@ -62,6 +78,27 @@ module.exports = {
 			return res.json(results);
 		} catch (error) {
 			// console.log(error)
+		}
+	},
+
+	async market(req, res, next) {
+		const productData = req.body
+		const uidCorredor = uuidv4()
+
+		if (productData.codCorredor === "") {
+			productData.codCorredo = null
+		}
+
+		const query = `
+		INSERT INTO produto_supermercado (Valor_Unitario, Supermercado, Produto)
+		VALUES ('${productData.valor}', '${productData.cod_supermercado}','${productData.cod_produto}');
+		`
+
+		try {
+			const results = await knex.raw(query);
+			return res.json(results);
+		} catch (error) {
+			console.log(error)
 		}
 	}
 }

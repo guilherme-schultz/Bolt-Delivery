@@ -172,7 +172,6 @@ const ProductNewForm = () => {
 
             <CorredorModal isOpen={isOpen} setIsOpen={setIsOpen} setCorredor={setIsCorredor}/>
 
-
       </Paper>
 	  
   );

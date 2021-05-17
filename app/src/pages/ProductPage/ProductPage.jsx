@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import api from "../../services/api";
 
-import MenuBar from "../../componets/MenuBar/MenuBar"
 import ProductCard from "../../componets/ProductCard/ProductCard"
 import "./ProductPage.css"
 
@@ -9,8 +8,8 @@ const ProductPage = () => {
 
     const getProductID = () => {
         var url = window.location.href
-        var urlS = (url.split("/")).slice(-1)[0]
-        return urlS
+        // var urlS = (url.split("/")).slice(-1)[0]
+        return (url.split("/")).slice(-2)
     }
 
     const [isProductData, setIsProductData] = useState([]);
@@ -21,9 +20,10 @@ const ProductPage = () => {
 
     useEffect(() => {
         try {
-            console.log('Buscando...')
             console.log(getProductID())
-            api.get(`/produtos/${getProductID()}`).then((resp) => {
+            const params = getProductID()
+
+            api.get(`/produtos/${params[0]}/${params[1]}`).then((resp) => {
                 setIsProductData(resp.data.rows)
                 console.log(isProductData)
             });
@@ -36,10 +36,9 @@ const ProductPage = () => {
 
     return (
         <>
-            <MenuBar />
             <div >
                 <div>
-                    <ProductCard />
+                    <ProductCard data={isProductData[0]} />
                 </div>
             </div>
         </>

@@ -1,7 +1,7 @@
 CREATE TABLE Endereco (
 	Cod_Endereco varchar(255) PRIMARY KEY,
 	Apelido varchar(255) NOT NULL,
-	CEP Int NOT NULL,
+	CEP varchar(255) NOT NULL,
 	Rua varchar(255) NOT NULL,
 	Bairro varchar(255) NOT NULL,
 	Numero varchar(255) NOT NULL,

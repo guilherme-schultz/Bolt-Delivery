@@ -5,10 +5,11 @@ import ProductItem from "../../componets/ProductItem/ProductItem"
 import "./ProductGrid.css"
 
 function ProductGrid({ productData }) {
-    
+
     useEffect(() => {
         console.log(productData)
-    }, []);
+    }, [productData]);
+
 
     return (
         <div className="ProductGrid">

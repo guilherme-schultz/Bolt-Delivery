@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,GAAG,CAAC;EACA,OAAO,EAAE,MAAM;CAClB",
+    "sources": [
+        "ProductMarket.scss"
+    ],
+    "names": [],
+    "file": "ProductMarket.css"
+}
