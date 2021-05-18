@@ -25,6 +25,13 @@ const PaymentPage = ({data}) => {
         const cart = JSON.parse(localStorage.getItem('cart'))
         const user = JSON.parse(localStorage.getItem('user'))
         console.log(user)
+
+        setPayment(prevState => {
+            return {
+            ...prevState,
+            CPF_Cliente: user.cpf
+        }
+    })
         
         api.get(`/adress/${user.cpf}`).then((resp) => {
             console.log(resp.status)
@@ -193,6 +200,7 @@ const PaymentPage = ({data}) => {
                     id="endereco"
                     name="endereco"
                     label="Gorjeta"
+                    type="number"
                     fullWidth
                     onChange={handleCartaoGojeta}
                     />

@@ -18,7 +18,7 @@ CREATE TABLE Endereco (
 
 CREATE TABLE Usuario (
 	CPF varchar(255) PRIMARY KEY NOT NULL UNIQUE,
-	Email varchar(255) NOT NULL,
+	Email varchar(255) NOT null UNIQUE,
 	Senha varchar(255) NOT NULL,
 	Celular varchar(255) NOT NULL,
 	Nome varchar(255) NOT NULL,
@@ -65,13 +65,15 @@ CREATE TABLE Entregador_Carteira (
 );
 
 CREATE TABLE Pagamento (
-	Cod_Pagamento SERIAL PRIMARY KEY UNIQUE,
+	Cod_Pagamento varchar(255) PRIMARY KEY UNIQUE,
 	Cartao_Nome varchar(255),
 	Cartao_Numero varchar(255),
 	Cartao_CPF varchar(255),
-	Tipo varchar(255),
 	CPF_Cliente varchar(255) REFERENCES Cliente(CPF_Cliente)
 );
+
+ALTER TABLE Pagamento
+ADD Cod_Pag varchar(255) UNIQUE
  
 CREATE TABLE Taxa (
 	Cod_Taxa varchar(255) PRIMARY KEY UNIQUE,
@@ -123,6 +125,7 @@ CREATE TABLE Carrinho (
 	Observacao varchar(255)
 );
 
+
 CREATE TABLE Produto_Carrinho (
 	Quantidade float(2),
 	Valor money,
@@ -144,12 +147,14 @@ CREATE TABLE Pedido (
 	CPF_Entregador varchar(255) REFERENCES Entregador(CPF_Entregador),
 	Endereco_Entrega varchar(255) REFERENCES Endereco_Usuario(Cod_Endereco),
 	Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado),
-	Pagamento SERIAL REFERENCES Pagamento(Cod_Pagamento),
-	Taxas varchar(255) REFERENCES Taxa(Cod_Taxa),
+	Cod_Pagamento varchar(255) REFERENCES Pagamento(Cod_Pagamento),
+	Taxas varchar(255),
 	Carrinho varchar(255) REFERENCES Carrinho(Cod_Carrinho)
 );
 
 ALTER TABLE Carrinho ADD Cod_Pedido varchar(255) REFERENCES Pedido(Cod_Pedido);
+
+
 
 
 

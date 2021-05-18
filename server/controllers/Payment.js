@@ -9,6 +9,8 @@ module.exports = {
         const codCarinho = uuidv4()
         const codPagamento = uuidv4()
 
+        console.log(Data)
+
 
         const criarPedido = `
         INSERT INTO pedido (Cod_Pedido) VALUES ('${uidpedido}');
@@ -33,8 +35,8 @@ module.exports = {
 
 
         const pagamento = `
-        INSERT INTO pagamento (Cartao_Nome, Cartao_CPF, Cartao_Numero, CPF_Cliente)
-        VALUES ('${Data.Cartao_Nome}', '${Data.Cartao_CPF}', '${Data.Cartao_Numero}', '${Data.CPF_Cliente}', '${codPagamento}');
+        INSERT INTO pagamento (Cod_Pagamento, Cartao_Nome, Cartao_CPF, Cartao_Numero, CPF_Cliente)
+        VALUES ('${codPagamento}', '${Data.Cartao_Nome}', '${Data.Cartao_CPF}', '${Data.Cartao_Numero}', '${Data.CPF_Cliente}');
         `
 
         const getEntregadores = await knex.raw("SELECT * from entregador");
@@ -44,6 +46,7 @@ module.exports = {
         const taxaDeEntrega = Data.produtos.length
         const taxaFrete = taxaDeEntrega * 2
 
+        // TODO VERIFICAR TIPOS DE DADOS
         const carteiraEntregado = `
         UPDATE entregador_carteira
         SET Total_Frete = '${getEntregador.rows[0].total_frete + taxaFrete}', Total_Gorjeta = '${getEntregador.rows[0].total_gorjeta + Data.gorjeta}', Taxa_Recebida = '${getEntregador.rows[0].taxa_recebida + taxaDeEntrega}'
