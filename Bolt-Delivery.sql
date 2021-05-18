@@ -159,3 +159,6 @@ ALTER TABLE Carrinho ADD Cod_Pedido varchar(255) REFERENCES Pedido(Cod_Pedido);
 
 
 
+
+
+

@@ -9,7 +9,7 @@ module.exports = {
         const codCarinho = uuidv4()
         const codPagamento = uuidv4()
 
-        console.log(Data)
+        // console.log(Data)
 
 
         const criarPedido = `
@@ -29,8 +29,8 @@ module.exports = {
             INSERT INTO Produto_Carrinho (Quantidade, Valor, Produto, Carrinho)
             VALUES ('${Data.produtos[i].qtd}', '${Data.produtos[i].value}', '${Data.produtos[i].productId}', '${codCarinho}');
             `
-
-            ValorCarrinho += parseFloat(Data.produtos[i].value)
+            console.log(parseFloat(Data.produtos[i].value.replace(/[^\d.-]/g, '')))
+            ValorCarrinho += parseFloat(Data.produtos[i].value.replace(/[^\d.-]/g, ''))
         }
 
 
@@ -46,10 +46,9 @@ module.exports = {
         const taxaDeEntrega = Data.produtos.length
         const taxaFrete = taxaDeEntrega * 2
 
-        // TODO VERIFICAR TIPOS DE DADOS
         const carteiraEntregado = `
         UPDATE entregador_carteira
-        SET Total_Frete = '${getEntregador.rows[0].total_frete + taxaFrete}', Total_Gorjeta = '${getEntregador.rows[0].total_gorjeta + Data.gorjeta}', Taxa_Recebida = '${getEntregador.rows[0].taxa_recebida + taxaDeEntrega}'
+        SET Total_Frete = '${parseFloat(getEntregador.rows[0].total_frete.replace(/[^\d.-]/g, ''))  + parseFloat(taxaFrete)}', Total_Gorjeta = '${parseFloat(getEntregador.rows[0].total_gorjeta.replace(/[^\d.-]/g, '')) + parseFloat(Data.gorjeta)}', Taxa_Recebida = '${parseFloat(getEntregador.rows[0].taxa_recebida.replace(/[^\d.-]/g, '')) + parseFloat(taxaDeEntrega)}'
         WHERE cpf_entregador = '${getEntregador.rows[0].cpf_entregador}';
         `
         const taxas = await knex.raw("SELECT * from taxa WHERE cod_taxa = 'Taxa Padrao' ");
@@ -57,6 +56,8 @@ module.exports = {
         const date = new Date()
         var dateEntrega = new Date()
         dateEntrega.setSeconds(dateEntrega.getSeconds() + 9.58)
+
+        console.log(Math.floor(dateEntrega / 1000))
 
         const pedido = `
         UPDATE pedido
@@ -67,23 +68,22 @@ module.exports = {
         Valor_Entregador = '${taxaDeEntrega}',
         Valor_Frete = '${taxaFrete}',
         Status = 'Ativo',
-        Data_Entrega = '${dateEntrega}', 
-        Data_Compra = '${date}',
+        Data_Entrega = '${dateEntrega.toISOString()}',
+        Data_Compra = '${date.toISOString()}',
         CPF_Cliente = '${Data.CPF_Cliente}',
         CPF_Entregador = '${getEntregador.rows[0].cpf_entregador}',
         Endereco_Entrega = '${Data.cod_endereco}',
         Supermercado = '${Data.market}',
-        Cod_Pag = '${codPagamento}',
-        Taxas = '${taxas.rows[0].valor_do_app}',
+        Cod_Pagamento = '${codPagamento}',
+        Taxas = '${parseFloat(taxas.rows[0].valor_do_app.replace(/[^\d.-]/g, '')) }',
         Carrinho = '${codCarinho}'
         WHERE cod_pedido = '${uidpedido}';
         `
         const query = criarPedido + carrinho + prdsCart + pagamento + carteiraEntregado + pedido
-        console.log(query)
+        // console.log(query)
         
 		try {
 			const results = await knex.raw(query);
-            console.log(results)
 			return res.json("");
 		} catch (error) {
 			console.log(error);
