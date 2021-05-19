@@ -44,16 +44,16 @@ export default function BasicTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Cliente</TableCell>
+            <TableCell>Nome Cliente</TableCell>
+            <TableCell>CPF Cliente</TableCell>
             <TableCell align="right">Numero de pedidos</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {isPedidos.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.cpf_cliente}
-              </TableCell>
+            <TableRow key={row.cpf_cliente}>
+              <TableCell component="th" scope="row">{row.nome}</TableCell>
+              <TableCell component="th" scope="row">{row.cpf_cliente}</TableCell>
               <TableCell align="right">{row.count}</TableCell>
             </TableRow>
           ))}

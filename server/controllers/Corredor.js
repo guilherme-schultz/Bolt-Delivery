@@ -32,10 +32,11 @@ module.exports = {
 		const { nome } = req.params
 		
 		const query = `
-		select *
+		select p2.nome, count(pc.quantidade) AS qv
 		from pedido p, produto_carrinho pc, produto p2, corredor c 
 		where p.carrinho = pc.carrinho and pc.produto = p2.cod_produto and c.cod_corredor = p2.Cod_Corredor and c.nome_corredor = '${nome}'
-		order by pc.quantidade desc
+		GROUP BY c.cod_corredor, p2.nome 
+		order by qv DESC
 		`
 		try {
 			const results = await knex.raw(query);

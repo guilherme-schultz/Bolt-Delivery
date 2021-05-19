@@ -39,10 +39,10 @@ module.exports = {
 	async top(req, res, next) {
 
 		const query = `
-		select count(c.cpf_cliente), p.cpf_cliente
-		from pedido p, cliente c
-		where p.cpf_cliente = c.cpf_cliente
-		group by p.cpf_cliente		
+		select p.cpf_cliente, u.nome,  count(c.cpf_cliente)
+		from pedido p, cliente c, usuario u
+		where p.cpf_cliente = c.cpf_cliente AND u.cpf = c.cpf_cliente AND u.cpf = p.cpf_cliente 
+		group by p.cpf_cliente, u.nome	
 		`
 
 		try {

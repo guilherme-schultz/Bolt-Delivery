@@ -39,7 +39,7 @@ function MenuBar() {
                 >
                     <a href={`/novo/produto`} ><MenuItem onClick={handleClose}>Cadastro de Produtos</MenuItem></a>
                     <a href={`/pedidos`} ><MenuItem onClick={handleClose}>Pedidos</MenuItem></a>
-                    <a href={`/pedidos/top`} ><MenuItem onClick={handleClose}>Produtos Mais Vendidos</MenuItem></a>
+                    <a href={`/pedidos/top`} ><MenuItem onClick={handleClose}>Volume de Pedidos</MenuItem></a>
                     <a href={`/mercado/fin`} ><MenuItem onClick={handleClose}>Relatório Financeiro</MenuItem></a>
                     <a href={`/corredores/top`} ><MenuItem onClick={handleClose}>Mais Vendidos por Corredor</MenuItem></a>
                     <a href={`/entregadores`} ><MenuItem onClick={handleClose}>Pedidos Entregadores</MenuItem></a>

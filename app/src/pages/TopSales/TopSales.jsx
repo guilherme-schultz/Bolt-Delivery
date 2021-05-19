@@ -91,7 +91,7 @@ export default function BasicTable() {
               <TableCell component="th" scope="row">
                 {row.nome}
               </TableCell>
-              <TableCell align="right">{row.quantidade}</TableCell>
+              <TableCell align="right">{row.qv}</TableCell>
 
             </TableRow>
           ))}
