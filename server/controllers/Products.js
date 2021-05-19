@@ -12,21 +12,22 @@ module.exports = {
 		}
 	},
 
-	async create(req, res, next) {
-		const { id } = req.params
+	// async create(req, res, next) {
+	// 	const { id } = req.params
 	
-		const query = `
-		select * 
-		from produto_supermercado ps, supermercado s, produto p
-		where s.cod_supermercado = ps.supermercado and ps.produto = p.cod_produto and ps.supermercado = s.cod_supermercado and p.cod_produto = '${id}'
-		`
-		try {
-			const results = await knex.raw(query);
-			return res.json(results);
-		} catch (error) {
-			next(error);
-		}
-	},
+	// 	const query = `
+	// 	select * 
+	// 	from produto_supermercado ps, supermercado s, produto p
+	// 	where s.cod_supermercado = ps.supermercado and ps.produto = p.cod_produto and ps.supermercado = s.cod_supermercado and p.cod_produto = '${id}'
+	// 	`
+	// 	try {
+	// 		const results = await knex.raw(query);
+	// 		console.log(results)
+	// 		return res.json(results);
+	// 	} catch (error) {
+	// 		next(error);
+	// 	}
+	// },
 
 	async byId(req, res, next) {
 		const { id } = req.params
@@ -64,7 +65,7 @@ module.exports = {
 	async create(req, res, next) {
 		const productData = req.body
 		const uidCorredor = uuidv4()
-
+		
 		if (productData.codCorredor === "") {
 			productData.codCorredo = null
 		}
@@ -77,7 +78,7 @@ module.exports = {
 			const results = await knex.raw(query);
 			return res.json(results);
 		} catch (error) {
-			// console.log(error)
+			console.log(error)
 		}
 	},
 
@@ -89,6 +90,8 @@ module.exports = {
 			productData.codCorredo = null
 		}
 
+		console.log(productData)
+
 		const query = `
 		INSERT INTO produto_supermercado (Valor_Unitario, Supermercado, Produto)
 		VALUES ('${productData.valor}', '${productData.cod_supermercado}','${productData.cod_produto}');
@@ -96,6 +99,7 @@ module.exports = {
 
 		try {
 			const results = await knex.raw(query);
+			res.status(201);
 			return res.json(results);
 		} catch (error) {
 			console.log(error)
