@@ -92,19 +92,10 @@ const ProductList = () => {
 
 		setCorredoresSelected(event.target.value)
         handleCorredorFilter(event.target.value)
-
-		// if (isCorredoresSelected !== "") {
-		// 	const productFilter = isProductListRequested.filter((product) => 
-		// 		product.cod_corredor === event.target.value
-		// 	)
-
-		// 	setIsProductList(productFilter)
-		// }
 	}
 
 	const handleLimpar = () => {
 		setCorredoresSelected("")
-        // setIsProductList(isProductListRequested)
 
         const productFilter = isProductListRequested.filter((product) => 
             product.nome.toLowerCase().includes(isSearchText.toLowerCase())

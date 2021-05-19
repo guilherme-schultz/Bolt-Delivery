@@ -30,7 +30,7 @@ const ProductItem = ({ info }) => {
                     <span className="">{info.nome}<br/></span>
                     <span className="Product-Price-Before">R$ 150,00 <br/></span>
                     <span className="Product-Price">R{info.valor_unitario} / {info.unidade_de_medida}<br/></span>
-                    <span className="Product-Saler" >{info.supermercado}</span>
+                    <span className="Product-Saler" >{info.nome_supermercado}</span>
                 </div>
             </Paper>
          </a>

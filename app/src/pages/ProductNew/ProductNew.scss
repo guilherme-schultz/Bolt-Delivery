@@ -1,3 +1,15 @@
 .ProductNew {
-    
+    max-width: 800px;
+    padding-bottom: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+
+    .Spacer {
+        margin-bottom: 30px;
+    }
 }

@@ -83,9 +83,10 @@ export default function BasicTable() {
             <TableCell>Cliente</TableCell>
             <TableCell align="right">Data da Compra</TableCell>
             <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Taxa do App</TableCell>
             <TableCell align="right">Valor Frete</TableCell>
-            <TableCell align="right">Taxas</TableCell>
-			<TableCell align="right">Valor Total</TableCell>
+            <TableCell align="right">Valor Entregador</TableCell>
+			      <TableCell align="right">Total Do Carrinho</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -95,10 +96,11 @@ export default function BasicTable() {
                 {row.nome}
               </TableCell>
               <TableCell align="right">{row.data_compra}</TableCell>
-			  <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.valor_frete}</TableCell>
+			        <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">{row.taxas}</TableCell>
               <TableCell align="right">{row.valor_frete}</TableCell>
+              <TableCell align="right">{row.valor_entregador}</TableCell>
+              <TableCell align="right">{row.valor_total_carrinho}</TableCell>
             </TableRow>
           ))}
         </TableBody>

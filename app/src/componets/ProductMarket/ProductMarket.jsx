@@ -201,6 +201,7 @@ const ProductMarket = () => {
 
 
   return (
+	  <>
       <Paper elevation={2} className="AdressForm">
         <Typography variant="h6" gutterBottom>
           Cadastro de Produto Em Mercados
@@ -258,124 +259,133 @@ const ProductMarket = () => {
 
             <ProductListModal isOpen={isOpen} setIsOpen={setIsOpen} setCorredor={setIsCorredor} market={isMarket} />
 
-			<Paper elevation={2} className="ClientForm">
-
-				<Typography variant="h6" gutterBottom>
-					Nova Promoção
-				</Typography>
-
-				<Grid container spacing={3} xs={12}>
-
-				<Grid item xs={6}>'
-					<Select
-						labelId="demo-customized-select-label"
-						id="demo-customized-select"
-						value={isMarket}
-						onChange={handleChange}
-					>
-
-						{isMarketList && isMarketList.map((row) => (
-							<MenuItem value={row.cod_supermercado}>{row.nome_supermercado}</MenuItem>
-						))}
-
-					</Select>
-				</Grid>
-
-				<ProductListModal 
-					isOpen={isOpenPromo}
-					setIsOpen={setIsOpenPromo}
-					setCorredor={setProductPromo}
-					market={isMarket}
-					type={"promo"}
-				/>
-
-				<Button
-					className="buy"
-					color="secondary"
-					variant="contained"
-					onClick={handleModalPromo}
-					>
-					Selecionar Produto
-				</Button>
-
-				<Grid item xs={12} sm={6}>
-					<TextField
-					required
-					id="firstName"
-					name="firstName"
-					label="Valor"
-					type="number"
-					fullWidth
-					disabled={(isPromoData.tipo === "") ? true : false}
-					onChange={handleValorPromo}
-					/>
-				</Grid>
-
-				<Grid item xs={12} sm={6}>
-					<TextField
-					required
-					id="firstName"
-					name="firstName"
-					label="tipo"
-					type="text"
-					fullWidth
-					onChange={handleTipoPromo}
-					/>
-				</Grid>
-
-				<FormControlLabel
-					control={
-						<Checkbox
-							icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-							checkedIcon={<CheckBoxIcon fontSize="small" />}
-							name="checkedI"
-						/>
-					}
-					onChange={handleBlackFriday}
-					label="Black Friday"
-					/>
-
-					<Grid container justify="space-around">
-
-						<TextField
-							id="datetime-local"
-							label="Data de inicio"
-							type="datetime-local"
-							format="dd/MM/yyyy"
-							onChange={handleDateInicio}
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
-					</Grid>
-
-					<Grid container justify="space-around">
-						<TextField
-							id="datetime-local"
-							label="Data de fim"
-							type="datetime-local"
-							format="dd/MM/yyyy"
-							onChange={handleDateFim}
-							InputLabelProps={{
-							shrink: true,
-							}}
-						/>
-					</Grid>
-
-					<Button
-						className="buy"
-						color="secondary"
-						variant="contained"
-						onClick={handlePromo}
-						>
-						Programar Promoção
-					</Button>
-
-			</Grid>
-
-		</Paper>
 
       </Paper>
+
+	  <div className="Spacer">
+
+
+
+<Paper elevation={2} className="ClientForm">
+
+<Typography variant="h6" gutterBottom>
+	Nova Promoção
+</Typography>
+
+<Grid container spacing={3} xs={12}>
+
+<Grid item xs={6}>'
+	<Select
+		labelId="demo-customized-select-label"
+		id="demo-customized-select"
+		value={isMarket}
+		onChange={handleChange}
+	>
+
+		{isMarketList && isMarketList.map((row) => (
+			<MenuItem value={row.cod_supermercado}>{row.nome_supermercado}</MenuItem>
+		))}
+
+	</Select>
+</Grid>
+
+<ProductListModal 
+	isOpen={isOpenPromo}
+	setIsOpen={setIsOpenPromo}
+	setCorredor={setProductPromo}
+	market={isMarket}
+	type={"promo"}
+/>
+
+<Button
+	className="buy"
+	color="secondary"
+	variant="contained"
+	onClick={handleModalPromo}
+	>
+	Selecionar Produto
+</Button>
+
+<Grid item xs={12} sm={6}>
+	<TextField
+	required
+	id="firstName"
+	name="firstName"
+	label="Valor"
+	type="number"
+	fullWidth
+	disabled={(isPromoData.tipo === "") ? true : false}
+	onChange={handleValorPromo}
+	/>
+</Grid>
+
+<Grid item xs={12} sm={6}>
+	<TextField
+	required
+	id="firstName"
+	name="firstName"
+	label="tipo"
+	type="text"
+	fullWidth
+	onChange={handleTipoPromo}
+	/>
+</Grid>
+
+<FormControlLabel
+	control={
+		<Checkbox
+			icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+			checkedIcon={<CheckBoxIcon fontSize="small" />}
+			name="checkedI"
+		/>
+	}
+	onChange={handleBlackFriday}
+	label="Black Friday"
+	/>
+
+	<Grid container justify="space-around">
+
+		<TextField
+			id="datetime-local"
+			label="Data de inicio"
+			type="datetime-local"
+			format="dd/MM/yyyy"
+			onChange={handleDateInicio}
+			InputLabelProps={{
+				shrink: true,
+			}}
+		/>
+	</Grid>
+
+	<Grid container justify="space-around">
+		<TextField
+			id="datetime-local"
+			label="Data de fim"
+			type="datetime-local"
+			format="dd/MM/yyyy"
+			onChange={handleDateFim}
+			InputLabelProps={{
+			shrink: true,
+			}}
+		/>
+	</Grid>
+
+	<Button
+		className="buy"
+		color="secondary"
+		variant="contained"
+		onClick={handlePromo}
+		>
+		Programar Promoção
+	</Button>
+
+</Grid>
+
+</Paper>
+
+</div>
+
+</>
 	  
   );
 }

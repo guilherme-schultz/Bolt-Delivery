@@ -22,7 +22,7 @@ function ProductGrid({ productData }) {
                 spacing={3}
             >
                 {productData && productData.map((produto) => (
-                    < ProductItem className="Product-Card" info={produto} key={produto.cod_produto}/>
+                    < ProductItem className="Product-Card" info={produto} key={produto.cod_produto + produto.nome}/>
                     ))
                 }
                     

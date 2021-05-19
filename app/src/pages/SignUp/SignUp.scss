@@ -1,10 +1,12 @@
 .SignUp {
+    max-width: 800px;
+    padding-bottom: 50px;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 
-    margin-top: 150px;
-    margin-bottom: 150px;
+    padding: 10px;
 
 }

@@ -8,9 +8,12 @@ const ProductNew = () => {
 
 	return (
 		<div className="ProductNew">
-			<ProductNewForm />
-
-			<ProductMarket />
+			<div className="Spacer" >
+				<ProductNewForm />
+			</div>
+			<div>
+				<ProductMarket />
+			</div>
 		</div>
 	)
 }

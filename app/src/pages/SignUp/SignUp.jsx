@@ -9,9 +9,7 @@ const SignUp = () => {
 
 	return (
 		<div className="SignUp">
-
 			<ClientForm />
-
 		</div>
 	)
 }
