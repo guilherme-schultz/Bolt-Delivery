@@ -13,11 +13,11 @@ const MarketPage = () => {
 
     const handleSearch = (event) => {
 
-        if (event.target.value === "") {
+        if (event.target.value.replace(/\s+/g, '') === "") {
             setIsMarketList(isMarketListRequested)
         } else {
             const marketsFilter = isMarketListRequested.filter((market) => 
-                market.nome_supermercado.startsWith(event.target.value)
+                market.nome_supermercado.toLowerCase().includes(event.target.value.toLowerCase())
             )
             setIsMarketList(marketsFilter)
         }
@@ -25,7 +25,6 @@ const MarketPage = () => {
 
     useEffect(() => {
 		try {
-            console.log('Buscando...')
 			api.get("/mercados").then((resp) => {
                 console.log(resp)
                 setIsMarketListRequested(resp.data.rows)

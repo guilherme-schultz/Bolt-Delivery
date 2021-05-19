@@ -20,30 +20,43 @@ const ProductList = () => {
     const [isProductListRequested, setIsProductListRequested] = useState([]);
     const [isMarketName, setIsMarketName] = useState([]);
 
-    const handleSearch = (event, type = true) => {
 
-		var value = ""
-		if (type) {
-			value = event.target.value
-		} else {
-			value = event
-		}
 
-        if (value === "" && isCorredoresSelected === "") {
+    const handleFilterSearch = (value) => {
+        if (value.replace(/\s+/g, '') === "" && isCorredoresSelected.replace(/\s+/g, '') === "") {
             setIsProductList(isProductListRequested)
         } else {
             var productFilter = isProductListRequested.filter((product) => 
-                product.nome.toLowerCase().startsWith(value.toLowerCase())
+                product.nome.toLowerCase().includes(value.toLowerCase())
             )
 
-			if (isCorredoresSelected !== "") {
-				productFilter = productFilter.filter((product) => 
-					product.cod_corredor === isCorredoresSelected
-				)
-			}
-			setSearchText(value)
+            if (isCorredoresSelected.replace(/\s+/g, '') !== ""){
+
+                productFilter = productFilter.filter((product) => 
+                    product.cod_corredor === isCorredoresSelected
+                )
+            }
+
             setIsProductList(productFilter)
+			setSearchText(value)
         }
+    }
+
+    const handleCorredorFilter = (value) => {
+        var productFilter = isProductListRequested.filter((product) => 
+            product.nome.toLowerCase().includes(isSearchText.toLowerCase())
+        )
+
+        productFilter = productFilter.filter((product) => 
+            product.cod_corredor === value
+        )
+    
+        setIsProductList(productFilter)
+
+    }
+
+    const handleSearch = (event) => {
+        handleFilterSearch(event.target.value)
     }
 
 
@@ -76,23 +89,28 @@ const ProductList = () => {
 
 
 	const handleChange = (event) => {
+
 		setCorredoresSelected(event.target.value)
+        handleCorredorFilter(event.target.value)
 
-		if (isCorredoresSelected !== "") {
-			const productFilter = isProductListRequested.filter((product) => 
-				product.cod_corredor === event.target.value
-			)
+		// if (isCorredoresSelected !== "") {
+		// 	const productFilter = isProductListRequested.filter((product) => 
+		// 		product.cod_corredor === event.target.value
+		// 	)
 
-			setIsProductList(productFilter)
-		}
+		// 	setIsProductList(productFilter)
+		// }
 	}
 
 	const handleLimpar = () => {
 		setCorredoresSelected("")
-		// if (isSearchText !== "") {
-			handleSearch( isSearchText, false)
-		// }
-		
+        // setIsProductList(isProductListRequested)
+
+        const productFilter = isProductListRequested.filter((product) => 
+            product.nome.toLowerCase().includes(isSearchText.toLowerCase())
+        )
+
+        setIsProductList(productFilter)
 	}
 
     return (
