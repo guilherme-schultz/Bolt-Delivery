@@ -55,6 +55,15 @@ function MenuBar() {
                             Mercados
                         </Button>
                     </a>
+                    <a href={`/cadastro/endereco`} >
+                        <Button
+                            className="buy"
+                            color="primary"
+                            variant="contained"
+                            >
+                            Novo Endereço
+                        </Button>
+                    </a>
                     <a href={`/carrinho`} >
                         <Button
                             className="buy"

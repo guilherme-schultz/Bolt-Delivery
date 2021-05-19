@@ -58,7 +58,7 @@ export default function BasicTable() {
                 
             });
 
-            api.get(`/entregadores/stats/h/${isMarketList[0].cpf_entregador}`).then((resp) => {
+            api.get(`/entregadores/stats/h/${isMarket}`).then((resp) => {
                 setStatsH(resp.data.rows)
                 console.log(resp.data.rows)
             });
