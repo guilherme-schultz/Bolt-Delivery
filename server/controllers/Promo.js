@@ -33,5 +33,22 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
+	},
+
+
+    async activePromo(req, res, next) {
+
+        const query = `
+        select *
+        from promocao p
+        where p.data_fim > CURRENT_TIMESTAMP;
+        `
+
+		try {
+			const results = await knex.raw(query);
+			return res.json("");
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }
