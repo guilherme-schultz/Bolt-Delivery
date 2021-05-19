@@ -38,7 +38,13 @@ const AdressForm = ({title}) => {
 
 	const handleAdress = () => {
 
-		isAdressData.cpf = sessionStorage.getItem('userCPF');
+		if (sessionStorage.getItem('userCPF') === null ) {
+			const user = JSON.parse(localStorage.getItem('user'))
+			isAdressData.cpf = user.cpf
+		} else {
+			isAdressData.cpf = sessionStorage.getItem('userCPF');
+		}
+		
 		isAdressData.marketID = marketIDAdress
 
 		if (
