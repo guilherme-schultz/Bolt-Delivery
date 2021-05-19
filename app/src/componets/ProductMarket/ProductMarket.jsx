@@ -21,7 +21,6 @@ const ProductMarket = () => {
 	useEffect(() => {
 		try {
             api.get(`/mercados`).then((resp) => {
-                console.log(resp.status)
                 if (resp.status === 200 ) {
 					setMarketList(resp.data.rows)
                 }
@@ -47,8 +46,9 @@ const ProductMarket = () => {
 
 		try {
             api.post(`/produtos/market`, isProductData).then((resp) => {
+				console.log(resp.status)
                 if (resp.status === 200 ) {
-                    console.log(resp.status)
+					alert("Criado com sucesso");
                 }
             });
 		
@@ -85,6 +85,7 @@ const ProductMarket = () => {
     }
 
 	useEffect(() => {
+		console.log(isCorredor)
 		setIsProductData(prevState => {
 				return {
 				...prevState,
@@ -93,7 +94,7 @@ const ProductMarket = () => {
 		})
 
         // eslint-disable-next-line
-	}, [setIsOpen]);
+	}, [isOpen]);
 
 
 
@@ -132,7 +133,6 @@ const ProductMarket = () => {
 	}
 
 	useEffect(() => {
-		console.log(isOpenPromo)
 		setPromoData(prevState => {
 				return {
 				...prevState,
@@ -144,7 +144,6 @@ const ProductMarket = () => {
 	}, [isOpenPromo]);
 
 	useEffect(() => {
-		console.log(isOpenPromo)
 		setPromoData(prevState => {
 				return {
 				...prevState,
@@ -237,6 +236,15 @@ const ProductMarket = () => {
 
 		  
         </Grid>
+			<Button
+				className="buy"
+				color="secondary"
+				variant="contained"
+				onClick={handleModal}
+				disabled={(isMarket === "") ? true : false}
+				>
+				Selecionar Produto
+			</Button>
 
 			<Button
 				className="buy"
@@ -246,16 +254,6 @@ const ProductMarket = () => {
 				disabled={(isMarket === "") ? true : false}
 				>
 				Atribuir
-			</Button>
-
-			<Button
-				className="buy"
-				color="secondary"
-				variant="contained"
-				onClick={handleModal}
-				disabled={(isMarket === "") ? true : false}
-				>
-				Selecionar Produto
 			</Button>
 
             <ProductListModal isOpen={isOpen} setIsOpen={setIsOpen} setCorredor={setIsCorredor} market={isMarket} />

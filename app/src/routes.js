@@ -20,6 +20,12 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage"
 
 import Login from "./pages/Login/Login"
 
+import PedidoClient from "./pages/PedidoClient/PedidoClient"
+import MarketFin from "./pages/MarketFin/MarketFin"
+import TopSales from "./pages/TopSales/TopSales"
+import PedidoClienteTop from "./pages/PedidoClienteTop/PedidoClienteTop"
+import Entregador from "./pages/Entregador/Entregador"
+
 const Routes = () => {
     return (
         <BrowserRouter>
@@ -37,6 +43,12 @@ const Routes = () => {
 
             <Route component={CartPage} path="/carrinho" />
             <Route component={PaymentPage} path="/pagamento" />
+            <Route component={PedidoClient} path="/pedidos" exact/>
+            <Route component={MarketFin} path="/mercado/fin" exact/>
+            <Route component={TopSales} path="/corredores/top" exact/>
+
+            <Route component={PedidoClienteTop} path="/pedidos/top" exact/>
+            <Route component={Entregador} path="/entregadores" exact/>
         </BrowserRouter>
     )
 }

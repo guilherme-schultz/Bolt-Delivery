@@ -6,7 +6,7 @@ import "./ProductListModal.css"
 
 const ProductListModal = ({ isOpen, setIsOpen, setCorredor, market, type }) => {
 	const [isProductList, setIsProductList] = useState([]);
-	const [isProductSelected, setProductSelected] = useState({});
+	const [isProductSelected, setProductSelected] = useState("");
 
 	useEffect(() => {
         try {
@@ -44,6 +44,7 @@ const ProductListModal = ({ isOpen, setIsOpen, setCorredor, market, type }) => {
 
 	const handleChange = (event) => {
 		console.log(event.target.name)
+
 		setProductSelected((prevState) => {
 			return {
 				...prevState,

@@ -48,11 +48,7 @@ module.exports = {
 			const results = await knex.raw(query);
 			return res.json(results);
 		} catch (error) {
-
 			console.log(error);
-            return res.status(400).send({
-                message: 'Erro ao criar usuarios'
-            });
 		}
 	},
 

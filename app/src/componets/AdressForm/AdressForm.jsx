@@ -39,6 +39,7 @@ const AdressForm = ({title}) => {
 	const handleAdress = () => {
 
 		isAdressData.cpf = sessionStorage.getItem('userCPF');
+		isAdressData.marketID = marketIDAdress
 
 		if (
 			isAdressData.apelido === "" 
@@ -59,6 +60,7 @@ const AdressForm = ({title}) => {
 				api.post(`/adress`, isAdressData).then((resp) => {
 					console.log(resp.status)
 					if (resp.status === 200 ) {
+						alert("Criado com sucesso")
 						if (userType === "Supermercado") {
 							window.location = "/cadastro/endereco/mercado"
 						} else {
@@ -72,6 +74,7 @@ const AdressForm = ({title}) => {
 				api.post(`/adress/market`, isAdressData).then((resp) => {
 					console.log(resp.status)
 					if (resp.status === 200 ) {
+						alert("Criado com sucesso")
 						console.log(resp)
 						window.location = "/"
 					}

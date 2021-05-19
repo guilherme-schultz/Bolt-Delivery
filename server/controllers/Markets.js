@@ -50,6 +50,23 @@ module.exports = {
 		} catch (error) {
 			next(error);
 		}
+	},
+
+	async fin(req, res, next) {
+		const { nameById } = req.params
+
+		const query = `
+		select * from pedido p, supermercado s, usuario u
+		where p.supermercado = s.Cod_supermercado and s.Cod_supermercado = '${nameById}' and p.cpf_cliente = u.cpf
+		`
+
+		try {
+			const results = await knex.raw(query);
+			return res.json(results);
+
+		} catch (error) {
+			next(error);
+		}
 	}
 
 

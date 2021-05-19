@@ -22,7 +22,7 @@ const ProductNewForm = () => {
     }
 
 	useEffect(() => {
-
+		console.log(isCorredor)
 		setIsProductData(prevState => {
 			return {
 			...prevState,
@@ -31,7 +31,7 @@ const ProductNewForm = () => {
 		})
 
         // eslint-disable-next-line
-	}, [setIsOpen]);
+	}, [isOpen]);
 
 
 
@@ -152,15 +152,6 @@ const ProductNewForm = () => {
 		  
         </Grid>
 
-			<Button
-				className="buy"
-				color="secondary"
-				variant="contained"
-				onClick={handleNewProduct}
-				>
-				Continuar
-			</Button>
-
             <Button
 				className="buy"
 				color="secondary"
@@ -168,6 +159,15 @@ const ProductNewForm = () => {
 				onClick={handleModal}
 				>
 				Corredores
+			</Button>
+
+			<Button
+				className="buy"
+				color="secondary"
+				variant="contained"
+				onClick={handleNewProduct}
+				>
+				Continuar
 			</Button>
 
             <CorredorModal isOpen={isOpen} setIsOpen={setIsOpen} setCorredor={setIsCorredor}/>
