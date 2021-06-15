@@ -97,6 +97,30 @@ where s.cod_supermercado = 'Super%2520Mercad%25C3%25A3o'
 
 
 
+select p.cpf_cliente, u.nome, count(c.cpf_cliente)
+from pedido p, cliente c, usuario u
+where p.cpf_cliente = c.cpf_cliente AND u.cpf = c.cpf_cliente AND u.cpf = p.cpf_cliente 
+group by p.cpf_cliente, u.nome
+
+
+
+
+select p2.nome, count(pc.quantidade) AS qv
+from pedido p, produto_carrinho pc, produto p2, corredor c 
+where p.carrinho = pc.carrinho and pc.produto = p2.cod_produto and c.cod_corredor = p2.Cod_Corredor and c.nome_corredor = 'Massas'
+GROUP BY c.cod_corredor, p2.nome 
+order by qv DESC
+
+
+select *
+from promocao p
+where p.data_fim > CURRENT_TIMESTAMP;
+
+
+
+
+
+
 
 
 

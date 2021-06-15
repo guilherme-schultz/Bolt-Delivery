@@ -106,6 +106,9 @@ CREATE TABLE Promocao (
 	Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado)
 );
 
+ALTER TABLE Promocao
+ADD black_friday Boolean
+
 CREATE TABLE Produto_Supermercado (
 	Valor_Unitario money,
 	Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado),
@@ -118,6 +121,9 @@ CREATE TABLE Produto_Promocao (
 	Produto varchar(255) REFERENCES Produto(Cod_Produto),
 	Promocao varchar(255) REFERENCES Promocao(Cod_Promocao)
 );
+
+ALTER TABLE Produto_Promocao
+ADD Supermercado varchar(255) REFERENCES Supermercado(Cod_supermercado)
 
 CREATE TABLE Carrinho (
 	Cod_Carrinho varchar(255) PRIMARY KEY UNIQUE,
